@@ -5,24 +5,29 @@ import Modelo.Perro;
 
 import java.util.ArrayList;
 
+/**
+ * Controlador para la gestión de las operaciones relacionadas con los perros.
+ */
 public class ControladorPerro {
+	/**
+	 * Constructor por defecto.
+	 */
 	public ControladorPerro() {
 
 	}
-	/*
+	/**
 	* Metodo de insertar un "perrito" a una lista dinamica de la clase Perro
-	* @param nombre: El el nombre definido por el usuario
-	* @param edad: Es la edad definida por el usuario
-	* @param color: Es el color definido por el usuario
-	* @param raza: Es la raza definida por el usuario
-	* @param tamanio: Es el tamaño definido por el usuario
-	* @param peso: Es el tamaño definido por el usuario
-	* @param precio: Es el precio definido por el usuario
-	* @param perfil: Es el perfil defindo por el usuario
-	* @param sexo: Es el sexo definido por el usuario
-	* @param alimentacion: Es la alimentacion definida por el usuario
+	* @param nombre El nombre definido por el usuario
+	* @param edad Es la edad definida por el usuario
+	* @param color Es el color definido por el usuario
+	* @param raza Es la raza definida por el usuario
+	* @param tamanio Es el tamaño definido por el usuario
+	* @param peso Es el peso definido por el usuario
+	* @param precio Es el precio definido por el usuario
+	* @param perfil Es el perfil defindo por el usuario
+	* @param sexo Es el sexo definido por el usuario
+	* @param alimentacion Es la alimentacion definida por el usuario
 	*/
-
 	public void registrarPerro(String nombre, int edad, String color, String raza, float tamanio, float peso, float precio, int perfil, boolean sexo, String alimentacion){
 		Perro perro = new Perro();
 		perro.setNombre(nombre);
@@ -43,27 +48,43 @@ public class ControladorPerro {
 		System.out.println("Perro registrado con exito");
 	}
 
-	/*
-	* Metodo para consultar los perros
+	/**
+	 * Consulta la lista de perros disponibles en stock.
+	 *
+	 * @return Lista de perros en stock.
 	 */
-
 	public ArrayList<Perro> consultarPerros(){
 		ArrayList<Perro> auxPerros = BD.getStockPerros();
 		return auxPerros;
 	}
 
+	/**
+	 * Elimina un perro del stock.
+	 *
+	 * @param perro Perro a eliminar.
+	 */
 	public void eliminarPerro(Perro perro){
 		ArrayList<Perro> auxPerros = BD.getStockPerros();
 		auxPerros.remove(perro);
 		BD.setStockPerros(auxPerros);
 	}
 
+	/**
+	 * Registra la venta de un perro.
+	 *
+	 * @param perro Perro vendido.
+	 */
 	public void registrarVentaPerro(Perro perro){
 		ArrayList<Perro> auxPerros = BD.getVentaPerros();
 		auxPerros.add(perro);
 		BD.setVentaPerros(auxPerros);
 	}
 
+	/**
+	 * Realiza el proceso de venta de un perro, aplicando descuentos si corresponde.
+	 *
+	 * @param perro Perro a vender.
+	 */
 	public void venderPerro(Perro perro){
 		ArrayList<Perro> auxPerros = BD.getStockPerros();
 		if (perro.getPrecio() > 5000){
@@ -86,6 +107,11 @@ public class ControladorPerro {
 		}
 	}
 
+	/**
+	 * Consulta la lista de perros vendidos.
+	 *
+	 * @return Lista de perros vendidos.
+	 */
 	public ArrayList<Perro> consultarVentasPerro(){
 		ArrayList<Perro> auxPerros = BD.getVentaPerros();
 		return auxPerros;
