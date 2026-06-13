@@ -5,7 +5,25 @@ import Modelo.Serpiente;
 
 import java.util.ArrayList;
 
+/**
+ * Controlador para la gestión de las operaciones relacionadas con las serpientes.
+ */
 public class ControladorSerpiente {
+
+	/**
+	 * Registra una nueva serpiente en el stock.
+	 *
+	 * @param nombre Nombre de la serpiente.
+	 * @param edad Edad de la serpiente.
+	 * @param color Color de la serpiente.
+	 * @param raza Raza de la serpiente.
+	 * @param tamanio Tamaño de la serpiente.
+	 * @param peso Peso de la serpiente.
+	 * @param precio Precio de la serpiente.
+	 * @param sexo Sexo de la serpiente.
+	 * @param alimentacion Alimentación de la serpiente.
+	 * @param paisOrigen País de origen de la serpiente.
+	 */
 	public void registrarSerpiente(String nombre, int edad, String color, String raza, float tamanio, float peso, float precio, boolean sexo, String alimentacion, String paisOrigen){
 		Serpiente serpiente = new Serpiente();
 		serpiente.setNombre(nombre);
@@ -25,23 +43,43 @@ public class ControladorSerpiente {
 		System.out.println("Serpiente registrado con exito");
 	}
 
+	/**
+	 * Consulta la lista de serpientes disponibles en stock.
+	 *
+	 * @return Lista de serpientes en stock.
+	 */
 	public ArrayList<Serpiente> consultarSerpiente(){
 		ArrayList<Serpiente> auxSerpiente = BD.getStockSerp();
 		return auxSerpiente;
 	}
 
+	/**
+	 * Elimina una serpiente del stock.
+	 *
+	 * @param serpiente Serpiente a eliminar.
+	 */
 	public void eliminarSerpiente(Serpiente serpiente) {
 		ArrayList<Serpiente> auxSerpiente = BD.getStockSerp();
 		auxSerpiente.remove(serpiente);
 		BD.setStockSerp(auxSerpiente);
 	}
 
+	/**
+	 * Registra la venta de una serpiente.
+	 *
+	 * @param serpiente Serpiente vendida.
+	 */
 	public void registrarVentaSerpiente(Serpiente serpiente){
 		ArrayList<Serpiente> auxSerpiente = BD.getStockSerp();
 		auxSerpiente.add(serpiente);
 		BD.setVentaSerp(auxSerpiente);
 	}
 
+	/**
+	 * Realiza el proceso de venta de una serpiente, aplicando descuentos si corresponde.
+	 *
+	 * @param serpiente Serpiente a vender.
+	 */
 	public void venderSerpiente(Serpiente serpiente) {
 		ArrayList<Serpiente> auxSerpiente = BD.getStockSerp();
 		if(serpiente.getPrecio() > 5000){
@@ -62,6 +100,11 @@ public class ControladorSerpiente {
 		System.out.println("Felicidades, se ha vendido con exito");
 	}
 
+	/**
+	 * Consulta la lista de serpientes vendidas.
+	 *
+	 * @return Lista de serpientes vendidas.
+	 */
 	public ArrayList<Serpiente> consultarVentaSerpiente(){
 		ArrayList<Serpiente> auxSerpiente = BD.getVentaSerp();
 		return auxSerpiente;

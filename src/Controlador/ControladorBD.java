@@ -6,6 +6,9 @@ import Modelo.*;
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * Controlador para la persistencia de datos (guardado y lectura) en archivos.
+ */
 public class ControladorBD{
 
 	String nomArchPerro = "BDPerro.obj";
@@ -34,6 +37,11 @@ public class ControladorBD{
 
 	}
 
+	/**
+	 * Respalda el stock y las ventas de todos los animales guardándolos en archivos.
+	 *
+	 * @throws IOException Si ocurre un error de entrada/salida.
+	 */
 	public void respaldarBD() throws IOException {
 		this.guardarStockPerros();
 		this.guardarStockGatos();
@@ -114,6 +122,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda el stock de peces en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarStockPez() throws IOException {
 		ArrayList<Pez> auxPezs = BD.getStockPez();
 		FileOutputStream flujoS = new FileOutputStream(archPez);
@@ -156,6 +168,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda el stock de serpientes en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarStockSerpientes() throws IOException {
 		ArrayList<Serpiente> auxSerpiente = BD.getStockSerp();
 		FileOutputStream flujoS = new FileOutputStream(archSerpiente);
@@ -177,6 +193,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee el stock de perros desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerPerros() throws IOException, ClassNotFoundException{
 		ArrayList<Perro> auxPerros = new ArrayList<>();
 		if (archPerro.exists()){
@@ -197,6 +218,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee el stock de gatos desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerGatos() throws IOException, ClassNotFoundException{
 		ArrayList<Gato> auxGatos = new ArrayList<>();
 		if (archGato.exists()){
@@ -216,6 +242,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee el stock de peces desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerPezs() throws IOException, ClassNotFoundException{
 		ArrayList<Pez> auxPezs = new ArrayList<>();
 		if (archPez.exists()){
@@ -235,6 +266,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee el stock de arañas desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerAranias() throws IOException, ClassNotFoundException{
 		ArrayList<Arania> auxAranias = new ArrayList<>();
 		if (archArania.exists()){
@@ -254,6 +290,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee el stock de serpientes desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerSerpientes() throws IOException, ClassNotFoundException{
 		ArrayList<Serpiente> auxSerpiente = new ArrayList<>();
 		if (archSerpiente.exists()){
@@ -273,6 +314,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda las ventas de perros en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarVenPerros()  throws IOException {
 		ArrayList<Perro> auxPerros = BD.getVentaPerros();
 		FileOutputStream flujoS = new FileOutputStream(archVenPerro);
@@ -295,6 +340,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda las ventas de gatos en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarVenGatos()  throws IOException {
 		ArrayList<Gato> auxGatos = BD.getVentaGatos();
 		FileOutputStream flujoS = new FileOutputStream(archVenGato);
@@ -316,6 +365,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda las ventas de peces en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarVenPezs() throws IOException {
 		ArrayList<Pez> auxPezs = BD.getVentaPez();
 		FileOutputStream flujoS = new FileOutputStream(archVenPez);
@@ -337,6 +390,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda las ventas de arañas en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarVenAranias() throws IOException {
 		ArrayList<Arania> auxAranias = BD.getVentaAranias();
 		FileOutputStream flujoS = new FileOutputStream(archVenArania);
@@ -358,6 +415,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Guarda las ventas de serpientes en el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 */
 	public void guardarVenSerpientes() throws IOException {
 		ArrayList<Serpiente> auxSerpiente = BD.getVentaSerp();
 		FileOutputStream flujoS = new FileOutputStream(archVenSerpiente);
@@ -379,6 +440,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee las ventas de perros desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerVenPerros() throws IOException, ClassNotFoundException{
 		ArrayList<Perro> auxPerros = new ArrayList<>();
 		if (archPerro.exists()){
@@ -399,6 +465,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee las ventas de gatos desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerVenGatos() throws IOException, ClassNotFoundException{
 		ArrayList<Gato> auxGatos = new ArrayList<>();
 		if (archGato.exists()){
@@ -418,6 +489,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee las ventas de peces desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerVenPezs() throws IOException, ClassNotFoundException{
 		ArrayList<Pez> auxPezs = new ArrayList<>();
 		if (archPez.exists()){
@@ -437,6 +513,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee las ventas de arañas desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerVenAranias() throws IOException, ClassNotFoundException{
 		ArrayList<Arania> auxAranias = new ArrayList<>();
 		if (archArania.exists()){
@@ -456,6 +537,11 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Lee las ventas de serpientes desde el archivo correspondiente.
+	 * @throws IOException Si ocurre un error de E/S.
+	 * @throws ClassNotFoundException Si la clase no se encuentra.
+	 */
 	public void leerVenSerpientes() throws IOException, ClassNotFoundException{
 		ArrayList<Serpiente> auxSerpientes = new ArrayList<>();
 		if (archSerpiente.exists()){

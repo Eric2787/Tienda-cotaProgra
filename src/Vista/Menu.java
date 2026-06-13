@@ -7,6 +7,9 @@ import Almacenamiento.*;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * Clase que gestiona la interfaz de usuario en consola para el sistema de la tienda de mascotas.
+ */
 public class Menu {
 	// Variables de control
 	int aux = -1;
@@ -30,6 +33,12 @@ public class Menu {
 
 	ControladorValidacion controladorValidacion = new ControladorValidacion();
 
+	/**
+	 * Muestra el menú principal de la aplicación e interactúa con el usuario para realizar las distintas operaciones.
+	 *
+	 * @throws IOException Si ocurre un error de entrada/salida.
+	 * @throws ClassNotFoundException Si no se encuentra la clase al leer los objetos serializados.
+	 */
 	public void mostrarMenu() throws IOException, ClassNotFoundException{
 		Scanner lectorInt = new Scanner(System.in);
 		Scanner lectorString = new Scanner(System.in);
