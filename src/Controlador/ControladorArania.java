@@ -56,7 +56,7 @@ public class ControladorArania {
 		if (arania.getPrecio() > 5000){
 			Float dto = (float) (arania.getPrecio() * 0.90);
 			for (int i = 0; i < auxArania.size(); i++) {
-				if (auxArania.get(i).getPrecio() == arania.getPrecio()){
+				if (auxArania.get(i).getNombre().equals(arania.getNombre())){
 					auxArania.get(i).setPrecio(dto);
 					this.registrarVentaArania(arania);
 					this.eliminarArania(arania);

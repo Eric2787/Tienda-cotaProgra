@@ -58,7 +58,7 @@ public class ControladorPez {
 			Float dto = (float) (pececito.getPrecio() * 0.90);
 
 			for (int i = 0; i < auxPeces.size(); i++) {
-				if (auxPeces.get(i).getPrecio() == pececito.getPrecio()) {
+				if (auxPeces.get(i).getNombre().equals(pececito.getNombre())) {
 					auxPeces.get(i).setPrecio(dto);
 
 					this.registrarVentaPez(pececito);

@@ -198,12 +198,12 @@ public class Menu {
 							System.out.println("Ingrese el nombre del pez");
 							nombre = lectorString.nextLine();
 							System.out.println("Ingrese la edad del pez");
-							while (true){
+							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valEntero(pso)){
+								if (controladorValidacion.valEntero(pso)) {
 									edad = Integer.parseInt(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
@@ -234,10 +234,10 @@ public class Menu {
 							System.out.println("Ingrese el precio del pez");
 							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valFloat(pso)){
+								if (controladorValidacion.valFloat(pso)) {
 									precio = Float.parseFloat(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
@@ -245,7 +245,7 @@ public class Menu {
 							System.out.println("1. Salada");
 							System.out.println("2. Dulce");
 							int opc3 = lectorInt.nextInt();
-							switch (opc3){
+							switch (opc3) {
 								case 1:
 									tipoAgua = true;
 									break;
@@ -260,9 +260,9 @@ public class Menu {
 							System.out.println("1. Macho");
 							System.out.println("2. Hembra");
 							opc3 = lectorInt.nextInt();
-							if (opc3 == 1){
+							if (opc3 == 1) {
 								sexo = true;
-							}else{
+							} else {
 								sexo = false;
 							}
 							System.out.println("Ingrese la alimentación del pez");
@@ -281,12 +281,12 @@ public class Menu {
 							System.out.println("Ingrese el nombre de la araña");
 							nombre = lectorString.nextLine();
 							System.out.println("Ingrese la edad de la araña");
-							while (true){
+							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valEntero(pso)){
+								if (controladorValidacion.valEntero(pso)) {
 									edad = Integer.parseInt(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
@@ -295,32 +295,32 @@ public class Menu {
 							System.out.println("Ingrese la raza de la araña");
 							raza = lectorString.nextLine();
 							System.out.println("Ingrese el tamaño de la araña");
-							while(true){
+							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valFloat(pso)){
+								if (controladorValidacion.valFloat(pso)) {
 									tamanio = Float.parseFloat(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
 							System.out.println("Ingrese el peso de la araña");
-							while(true){
+							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valFloat(pso)){
+								if (controladorValidacion.valFloat(pso)) {
 									peso = Float.parseFloat(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
 							System.out.println("Ingrese el precio de la araña");
-							while (true){
+							while (true) {
 								String pso = lectorString.nextLine();
-								if (controladorValidacion.valFloat(pso)){
+								if (controladorValidacion.valFloat(pso)) {
 									precio = Float.parseFloat(pso);
 									break;
-								}else{
+								} else {
 									System.out.println("Ingrese un numero valido");
 								}
 							}
@@ -328,18 +328,18 @@ public class Menu {
 							System.out.println("1. Es venenosa");
 							System.out.println("2. No es venenosa");
 							opc3 = lectorInt.nextInt();
-							if (opc3 == 1){
+							if (opc3 == 1) {
 								toxicidad = true;
-							}else{
+							} else {
 								toxicidad = false;
 							}
 							System.out.println("Ingrese el sexo de la araña");
 							System.out.println("1. Macho");
 							System.out.println("2. Hembra");
 							opc3 = lectorInt.nextInt();
-							if (opc3 == 1){
+							if (opc3 == 1) {
 								sexo = true;
-							}else{
+							} else {
 								sexo = false;
 							}
 							System.out.println("Ingrese la alimentación de la araña");
@@ -352,11 +352,84 @@ public class Menu {
 							controladorArania.registrarArania(nombre, edad, color, raza, tamanio, peso, precio, toxicidad, sexo, alimentacion);
 							controladorBD.respaldarBD();
 							break;
+
+						case 5:
+							System.out.println("Se va a registrar una serpiente");
+							System.out.println("Ingrese el nombre de la serpiente");
+							nombre = lectorString.nextLine();
+							System.out.println("Ingrese la edad de la serpiente");
+							while (true) {
+								String pso = lectorString.nextLine();
+								if (controladorValidacion.valEntero(pso)) {
+									edad = Integer.parseInt(pso);
+									break;
+								} else {
+									System.out.println("Ingrese un numero valido");
+								}
+							}
+							System.out.println("Ingrese el color de la serpiente");
+							color = lectorString.nextLine();
+							System.out.println("Ingrese la raza de la serpiente");
+							raza = lectorString.nextLine();
+							System.out.println("Ingrese el tamaño de la serpiente");
+							while (true) {
+								String pso = lectorString.nextLine();
+								if (controladorValidacion.valFloat(pso)) {
+									tamanio = Float.parseFloat(pso);
+									break;
+								} else {
+									System.out.println("Ingrese un numero valido");
+								}
+							}
+							System.out.println("Ingrese el peso de la serpiente");
+							while (true) {
+								String pso = lectorString.nextLine();
+								if (controladorValidacion.valFloat(pso)) {
+									peso = Float.parseFloat(pso);
+									break;
+								} else {
+									System.out.println("Ingrese un numero valido");
+								}
+							}
+							System.out.println("Ingrese el precio de la serpiente");
+							while (true) {
+								String pso = lectorString.nextLine();
+								if (controladorValidacion.valFloat(pso)) {
+									precio = Float.parseFloat(pso);
+									break;
+								} else {
+									System.out.println("Ingrese un numero valido");
+								}
+							}
+							System.out.println("Ingrese el sexo de la serpiente");
+							System.out.println("1. Macho");
+							System.out.println("2. Hembra");
+							opc3 = lectorInt.nextInt();
+							if (opc3 == 1) {
+								sexo = true;
+							} else {
+								sexo = false;
+							}
+							System.out.println("Ingrese la alimentación de la serpiente");
+							System.out.println("1. Es carnivoro");
+							System.out.println("2. Es hervivoro");
+							System.out.println("3. Es omnivoro");
+							opc3 = lectorInt.nextInt();
+							alimentacion(opc3);
+							System.out.println("Ingrese el pais de origen de la serpiente");
+							paisOrigen = lectorString.nextLine();
+							break;
 					}
-				case 2:
-
 					break;
-
+				case 2:
+					System.out.println("Se ha seleccionado vender a un animal");
+					System.out.println("Elija el animal que desea vender");
+					System.out.println("1. Perro");
+					System.out.println("2. Gato");
+					System.out.println("3. Pez");
+					System.out.println("4. Araña");
+					System.out.println("5. Serpiente");
+					break;
 				case 3:
 					for (Perro perro : BD.getStockPerros()){
 						System.out.println("Nombre: " + perro.getNombre());

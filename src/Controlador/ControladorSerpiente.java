@@ -47,7 +47,7 @@ public class ControladorSerpiente {
 		if(serpiente.getPrecio() > 5000){
 			float dto = (float) (serpiente.getPrecio() * 0.90);
 			for (int i = 0; i < auxSerpiente.size(); i++) {
-				if (auxSerpiente.get(i).getPrecio() == serpiente.getPrecio()){
+				if (auxSerpiente.get(i).getNombre().equals(serpiente.getNombre())){
 					auxSerpiente.get(i).setPrecio(dto);
 					this.registrarVentaSerpiente(serpiente);
 					this.eliminarSerpiente(serpiente);

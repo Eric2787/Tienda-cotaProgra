@@ -51,7 +51,7 @@ public class ControladorGato {
 		if (gato.getPrecio()> 5000){
 			float descuento = (float) (gato.getPrecio() * 0.90);
 			for (int i = 0; i < auxgatos.size(); i++) {
-				if (auxgatos.get(i).getPrecio() == gato.getPrecio()) {
+				if (auxgatos.get(i).getNombre().equals(gato.getNombre())) {
 					auxgatos.get(i).setPrecio(descuento);
 					this.registrarVentaGatos(gato);
 					this.eliminarGatos(gato);

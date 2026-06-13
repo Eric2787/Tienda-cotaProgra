@@ -69,7 +69,7 @@ public class ControladorPerro {
 		if (perro.getPrecio() > 5000){
 			Float dto = (float) (perro.getPrecio() * 0.90);
 			for (int i = 0; i < auxPerros.size(); i++) {
-				if (auxPerros.get(i).getPrecio() == perro.getPrecio()){
+				if (auxPerros.get(i).getNombre().equals(perro.getNombre())){
 					auxPerros.get(i).setPrecio(dto);
 					this.registrarVentaPerro(perro);
 					this.eliminarPerro(perro);
