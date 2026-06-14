@@ -15,6 +15,7 @@ public class Menu {
 	int aux = -1;
 	int i = 0;
 	int i2 = 0;
+	int opc, opc2 = 0;
 	//Variables de caracteristicas de animales
 	String nombre, color, raza, paisOrigen, alimentacion, modoReproduccion;
 	int edad;
@@ -45,6 +46,7 @@ public class Menu {
 		Scanner lectorFloat = new Scanner(System.in);
 
 		do {
+			controladorBD.cargarBD();
 
 			System.out.println("Bienvenido a la tienda de +KOTA");
 			System.out.println("Nuestro menú es: ");
@@ -66,6 +68,7 @@ public class Menu {
 					System.out.println("3. Registrar un pez");
 					System.out.println("4. Registrar un araña");
 					System.out.println("5. Registrar un serpiente");
+					System.out.println("6. Volver");
 					i2 = lectorInt.nextInt();
 					switch (i2) {
 						case 1:
@@ -427,6 +430,13 @@ public class Menu {
 							alimentacion(opc3);
 							System.out.println("Ingrese el pais de origen de la serpiente");
 							paisOrigen = lectorString.nextLine();
+							controladorSerpiente.registrarSerpiente(nombre, edad, color, raza, tamanio, peso, precio, sexo, alimentacion, paisOrigen);
+							controladorBD.respaldarBD();
+							break;
+						case 6:
+							break;
+						default:
+							System.out.println("Ingrese una opcion valida");
 							break;
 					}
 					break;
@@ -438,18 +448,289 @@ public class Menu {
 					System.out.println("3. Pez");
 					System.out.println("4. Araña");
 					System.out.println("5. Serpiente");
+					System.out.println("6. Volver");
+					while (true){
+						String pso = lectorString.nextLine();
+						if(controladorValidacion.valEntero(pso)){
+							opc = Integer.parseInt(pso);
+							break;
+						}else{
+							System.out.println("Ingrese un numero valido");
+						}
+					}
+					switch (opc){
+						case 1:
+							System.out.println("Se va a vender un perro");
+							System.out.println("Ingrese el nombre del perro");
+							nombre = lectorString.nextLine();
+							for(Perro perro : BD.getStockPerros()){
+								if(perro.getNombre().equals(nombre)) {
+									controladorPerro.venderPerro(perro);
+									break;
+								}else{
+									System.out.println("ERROR: No se encontró el perro. Verifique que el nombre sea correcto");
+								}
+							}
+							controladorBD.respaldarBD();
+							break;
+						case 2:
+							System.out.println("Se va a vender un gato");
+							System.out.println("Ingrese el nombre del gato");
+							nombre = lectorString.nextLine();
+							for(Gato gato : BD.getStockGatos()) {
+								if (gato.getNombre().equals(nombre)) {
+									controladorGato.venderGatos(gato);
+									break;
+								} else {
+									System.out.println("ERROR: No se encontró el gato. Verifique que el nombre sea correcto");
+								}
+							}
+							controladorBD.respaldarBD();
+							break;
+						case 3:
+							System.out.println("Se va a vender un pez");
+							System.out.println("Ingrese el nombre del pez");
+							nombre = lectorString.nextLine();
+							for (Pez pez : BD.getStockPez()){
+								if (pez.getNombre().equals(nombre)) {
+									controladorPez.venderPez(pez);
+									break;
+								}else{
+									System.out.println("ERROR: No se encontró el pez. Verifique que el nombre sea correcto");
+								}
+							}
+							controladorBD.respaldarBD();
+							break;
+						case 4:
+							System.out.println("Se va a vender una araña");
+							System.out.println("Ingrese el nombre de la araña");
+							nombre = lectorString.nextLine();
+							for(Arania arania : BD.getStockAranias()){
+								if(arania.getNombre().equals(nombre)){
+									controladorArania.venderArania(arania);
+									break;
+								}else{
+									System.out.println("ERROR: No se encontró la araña. Verifique que el nombre sea correcto");
+								}
+							}
+							controladorBD.respaldarBD();
+							break;
+						case 5:
+							System.out.println("Se va a vender una serpiente");
+							System.out.println("Ingrese el nombre de la serpiente");
+							nombre = lectorString.nextLine();
+							for(Serpiente serpiente : BD.getStockSerp()){
+								if(serpiente.getNombre().equals(nombre)){
+									controladorSerpiente.venderSerpiente(serpiente);
+									break;
+								}else{
+									System.out.println("ERROR: No se encontró la serpiente. Verifique que el nombre sea correcto");
+								}
+							}
+							controladorBD.respaldarBD();
+							break;
+						case 6:
+							break;
+						default:
+							System.out.println("Ingrese una opcion valida");
+							break;
+					}
 					break;
 				case 3:
 					for (Perro perro : BD.getStockPerros()){
+						System.out.print("""
+								  /^ ^\\
+								 / 0 0 \\
+								 V\\ Y /V
+								  / - \\
+								 /    |
+								V__) ||
+								""");
 						System.out.println("Nombre: " + perro.getNombre());
+						System.out.println("Edad: " + perro.getEdad());
+						System.out.println("Color: " + perro.getColor());
+						System.out.println("Raza: " + perro.getRaza());
+						System.out.println("Tamaño: " + perro.getTamanio());
+						System.out.println("Peso: " + perro.getPeso());
+						System.out.println("Precio: " + perro.getPrecio());
+						String auxperfil = switch (perro.getPerfil()) {
+							case 1 -> "Semental";
+							case 2 -> "Mascota";
+							case 3 -> "Policia";
+							case 4 -> "Apoyo a invidentes";
+							default -> "";
+						};
+						System.out.println("Perfil: " + auxperfil);
+						System.out.println("Sexo: " + perro.getSexo());
+						System.out.println("Alimentacion: " + perro.getAlimentacion());
 					}
 					for (Gato gato : BD.getStockGatos()) {
+						System.out.print("""
+								 /\\_/\\
+								( o.o )
+								 > ^ <
+								""");
 						System.out.println("Nombre: " + gato.getNombre());
+						System.out.println("Edad: " + gato.getEdad());
+						System.out.println("Color: " + gato.getColor());
+						System.out.println("Raza: " + gato.getRaza());
+						System.out.println("Tamaño: " + gato.getTamanio());
+						System.out.println("Peso: " + gato.getPeso());
+						System.out.println("Precio: " + gato.getPrecio());
+						System.out.println("Color de ojos: " + gato.getColorOjos());
+						System.out.println("Sexo: " + gato.getSexo());
+						System.out.println("Alimentacion: " + gato.getAlimentacion());
+					}
+					for (Pez pez : BD.getStockPez()) {
+						System.out.print("""
+								      /`·.¸
+								     /¸...¸`:·
+								 ¸.·´  ¸   `·.¸.·´)
+								: © ):´;      ¸  {
+								 `·.¸ `·  ¸.·´\\`·¸)
+								     `\\\\´´\\¸.·´
+								""");
+						System.out.println("Nombre: " + pez.getNombre());
+						System.out.println("Edad: " + pez.getEdad());
+						System.out.println("Color: " + pez.getColor());
+						System.out.println("Raza: " + pez.getRaza());
+						System.out.println("Tamaño: " + pez.getTamanio());
+						System.out.println("Peso: " + pez.getPeso());
+						System.out.println("Precio: " + pez.getPrecio());
+						System.out.println("Tipo de agua: " + pez.getTipoAgua());
+						System.out.println("Sexo: " + pez.getSexo());
+						System.out.println("Alimentacion: " + pez.getAlimentacion());
+					}
+					for (Arania arania : BD.getStockAranias()) {
+						System.out.print("""
+								 /\\ \\  / /\\
+								//\\\\ .. //\\\\
+								//\\((  ))/\\\\
+								/  < '' >  \\
+								""");
+						System.out.println("Nombre: " + arania.getNombre());
+						System.out.println("Edad: " + arania.getEdad());
+						System.out.println("Color: " + arania.getColor());
+						System.out.println("Raza: " + arania.getRaza());
+						System.out.println("Tamaño: " + arania.getTamanio());
+						System.out.println("Peso: " + arania.getPeso());
+						System.out.println("Precio: " + arania.getPrecio());
+						System.out.println("Toxicidad: " + arania.getVenenosa());
+						System.out.println("Sexo: " + arania.getSexo());
+						System.out.println("Alimentacion: " + arania.getAlimentacion());
+					}
+					for (Serpiente serpiente : BD.getStockSerp()) {
+						System.out.print("""
+								(\\   .-.   /_")
+								 \\\\_//^\\\\_//
+								  `"`   `"`
+								""");
+						System.out.println("Nombre: " + serpiente.getNombre());
+						System.out.println("Edad: " + serpiente.getEdad());
+						System.out.println("Color: " + serpiente.getColor());
+						System.out.println("Raza: " + serpiente.getRaza());
+						System.out.println("Tamaño: " + serpiente.getTamanio());
+						System.out.println("Peso: " + serpiente.getPeso());
+						System.out.println("Precio: " + serpiente.getPrecio());
+						System.out.println("Toxicidad: " + serpiente.getPaisOrigen());
+						System.out.println("Sexo: " + serpiente.getSexo());
+						System.out.println("Alimentacion: " + serpiente.getAlimentacion());
 					}
 					break;
 
 				case 4:
-
+					for (Perro perro : BD.getVentaPerros()){
+						System.out.print("""
+								  /^ ^\\
+								 / 0 0 \\
+								 V\\ Y /V
+								  / - \\
+								 /    |
+								V__) ||
+								""");
+						System.out.println("Nombre: " + perro.getNombre());
+						System.out.println("Edad: " + perro.getEdad());
+						System.out.println("Color: " + perro.getColor());
+						System.out.println("Raza: " + perro.getRaza());
+						System.out.println("Tamaño: " + perro.getTamanio());
+						System.out.println("Peso: " + perro.getPeso());
+						System.out.println("Precio: " + perro.getPrecio());
+						System.out.println("Perfil: " + perro.getPerfil());
+						System.out.println("Sexo: " + perro.getSexo());
+						System.out.println("Alimentacion: " + perro.getAlimentacion());
+					}
+					for (Gato gato : BD.getVentaGatos()) {
+						System.out.print("""
+								 /\\_/\\
+								( o.o )
+								 > ^ <
+								""");
+						System.out.println("Nombre: " + gato.getNombre());
+						System.out.println("Edad: " + gato.getEdad());
+						System.out.println("Color: " + gato.getColor());
+						System.out.println("Raza: " + gato.getRaza());
+						System.out.println("Tamaño: " + gato.getTamanio());
+						System.out.println("Peso: " + gato.getPeso());
+						System.out.println("Precio: " + gato.getPrecio());
+						System.out.println("Color de ojos: " + gato.getColorOjos());
+						System.out.println("Sexo: " + gato.getSexo());
+						System.out.println("Alimentacion: " + gato.getAlimentacion());
+					}
+					for (Pez pez : BD.getVentaPez()) {
+						System.out.print("""
+								      /`·.¸
+								     /¸...¸`:·
+								 ¸.·´  ¸   `·.¸.·´)
+								: © ):´;      ¸  {
+								 `·.¸ `·  ¸.·´\\`·¸)
+								     `\\\\´´\\¸.·´
+								""");
+						System.out.println("Nombre: " + pez.getNombre());
+						System.out.println("Edad: " + pez.getEdad());
+						System.out.println("Color: " + pez.getColor());
+						System.out.println("Raza: " + pez.getRaza());
+						System.out.println("Tamaño: " + pez.getTamanio());
+						System.out.println("Peso: " + pez.getPeso());
+						System.out.println("Precio: " + pez.getPrecio());
+						System.out.println("Tipo de agua: " + pez.getTipoAgua());
+						System.out.println("Sexo: " + pez.getSexo());
+						System.out.println("Alimentacion: " + pez.getAlimentacion());
+					}
+					for (Arania arania : BD.getVentaAranias()) {
+						System.out.print("""
+								 /\\ \\  / /\\
+								//\\\\ .. //\\\\
+								//\\((  ))/\\\\
+								/  < '' >  \\
+								""");
+						System.out.println("Nombre: " + arania.getNombre());
+						System.out.println("Edad: " + arania.getEdad());
+						System.out.println("Color: " + arania.getColor());
+						System.out.println("Raza: " + arania.getRaza());
+						System.out.println("Tamaño: " + arania.getTamanio());
+						System.out.println("Peso: " + arania.getPeso());
+						System.out.println("Precio: " + arania.getPrecio());
+						System.out.println("Toxicidad: " + arania.getVenenosa());
+						System.out.println("Sexo: " + arania.getSexo());
+						System.out.println("Alimentacion: " + arania.getAlimentacion());
+					}
+					for (Serpiente serpiente : BD.getVentaSerp()) {
+						System.out.print("""
+								(\\   .-.   /_")
+								 \\\\_//^\\\\_//
+								  `"`   `"`
+								""");
+						System.out.println("Nombre: " + serpiente.getNombre());
+						System.out.println("Edad: " + serpiente.getEdad());
+						System.out.println("Color: " + serpiente.getColor());
+						System.out.println("Raza: " + serpiente.getRaza());
+						System.out.println("Tamaño: " + serpiente.getTamanio());
+						System.out.println("Peso: " + serpiente.getPeso());
+						System.out.println("Precio: " + serpiente.getPrecio());
+						System.out.println("Toxicidad: " + serpiente.getPaisOrigen());
+						System.out.println("Sexo: " + serpiente.getSexo());
+						System.out.println("Alimentacion: " + serpiente.getAlimentacion());
+					}
 					break;
 
 				case 5:
@@ -461,10 +742,50 @@ public class Menu {
 					break;
 
 				case 7:
-
+					System.out.println("Elija el animal que desee que salude");
+					System.out.println("1. Perro");
+					System.out.println("2. Gato");
+					System.out.println("3. Pez");
+					System.out.println("4. Araña");
+					System.out.println("5. Serpiente");
+					System.out.println("6. Volver");
+					while (true){
+						String pso = lectorString.nextLine();
+						if(controladorValidacion.valEntero(pso)){
+							opc = Integer.parseInt(pso);
+							break;
+						}else{
+							System.out.println("Ingrese un numero valido");
+						}
+					}
+					switch (opc) {
+						case 1:
+							for (Perro perro : BD.getStockPerros()){
+								controladorPerro.Saludar(perro.getPerfil());
+							}
+							break;
+						case 2:
+							break;
+						case 3:
+							break;
+						case 4:
+							for(Arania arania : BD.getStockAranias()){
+								controladorArania.Saludar();
+							}
+							break;
+						case 5:
+							break;
+						case 6:
+							break;
+						default:
+							System.out.println("Ingrese una opcion valida");
+							break;
+					}
 					break;
 
 				case 8:
+					System.out.println("Respaldando datos...");
+					controladorBD.respaldarBD();
 					System.out.println("Gracias por su visita");
 					aux = 0;
 					break;

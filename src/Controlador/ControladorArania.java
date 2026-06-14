@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Controlador para la gestión de las operaciones relacionadas con las arañas.
  */
-public class ControladorArania {
+public class ControladorArania implements  SaludosInterfaz {
 	/**
 	 * Constructor por defecto.
 	 */
@@ -119,4 +119,18 @@ public class ControladorArania {
 		return auxArania;
 	}
 
+	@Override
+	public void Saludar(int perfil) {
+	}
+
+	@Override
+	public void Saludar() {
+		System.out.print("""
+				 /\\ \\  / /\\
+				//\\\\ .. //\\\\
+				//\\((  ))/\\\\
+				/  < '' >  \\
+				""");
+		System.out.println("Hola soy una araña");
+	}
 }

@@ -3,7 +3,7 @@ package Modelo;
 /**
  * Clase que representa a una Araña, heredando de Animal.
  */
-public class Arania extends  Animal{
+public class Arania extends  Animal {
 	// Atributos de la clase Arania 🕷️
 
 	private boolean venenosa;
@@ -15,7 +15,7 @@ public class Arania extends  Animal{
 	 *
 	 * @return true si es venenosa, false de lo contrario.
 	 */
-	public boolean isVenenosa() {
+	public boolean getVenenosa() {
 		return venenosa;
 	}
 
@@ -27,5 +27,4 @@ public class Arania extends  Animal{
 	public void setVenenosa(boolean venenosa) {
 		this.venenosa = venenosa;
 	}
-
 }

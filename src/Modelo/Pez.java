@@ -12,7 +12,7 @@ public class Pez  extends Animal{
 	 *
 	 * @return true si es de un tipo, false para otro.
 	 */
-	public boolean isTipoAgua() {
+	public boolean getTipoAgua() {
 		return tipoAgua;
 	}
 

@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Controlador para la gestión de las operaciones relacionadas con los perros.
  */
-public class ControladorPerro {
+public class ControladorPerro implements SaludosInterfaz {
 	/**
 	 * Constructor por defecto.
 	 */
@@ -117,4 +117,21 @@ public class ControladorPerro {
 		return auxPerros;
 	}
 
+	@Override
+	public void Saludar(int perfil) {
+		switch (perfil){
+			case 1:
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			case 4:
+				break;
+		}
+	}
+
+	@Override
+	public void Saludar() {
+	}
 }
