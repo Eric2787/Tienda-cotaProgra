@@ -761,6 +761,7 @@ public class Menu {
 					switch (opc) {
 						case 1:
 							for (Perro perro : BD.getStockPerros()){
+								controladorPerro.Saludar();
 								controladorPerro.Saludar(perro.getPerfil());
 							}
 							break;

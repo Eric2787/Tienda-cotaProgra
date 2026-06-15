@@ -4,6 +4,8 @@ import Almacenamiento.BD;
 import Modelo.Perro;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador para la gestión de las operaciones relacionadas con los perros.
@@ -117,21 +119,78 @@ public class ControladorPerro implements SaludosInterfaz {
 		return auxPerros;
 	}
 
+
+
 	@Override
 	public void Saludar(int perfil) {
 		switch (perfil){
 			case 1:
+				System.out.println("¡GUAU, GUAU! 🔊");
 				break;
 			case 2:
+				System.out.println("El perrito esta dormido 💤");
 				break;
 			case 3:
+				System.out.println("El perrito esta olfateando 🔍");
 				break;
 			case 4:
+				System.out.println("El perro esta sentado esperando 🐶");
 				break;
 		}
 	}
 
 	@Override
 	public void Saludar() {
+		Scanner lectorString = new Scanner(System.in);
+		ControladorValidacion controladorValidacion = new ControladorValidacion();
+
+		int aux = 0;
+
+		System.out.println("Lista de perritos registrados.");
+
+		List<Perro> listaPerros = BD.getStockPerros();
+
+		for (int i = 0; i < listaPerros.size(); i++) {
+			System.out.println(i+1 + ". " + listaPerros.get(i).getNombre());
+		}
+
+		while (true) {
+			System.out.println("Seleccione cual perrito saludar.");
+			String pso = lectorString.nextLine();
+
+			if (controladorValidacion.valEntero(pso)) {
+				int opcion = Integer.parseInt(pso);
+
+				if(opcion >= 1 &&  opcion <= listaPerros.size()) {
+					int numList = opcion -1;
+
+					Perro perro = listaPerros.get(numList);
+
+					System.out.println(" ¡GUAU, GUAU! soy " +  perro.getNombre());
+
+					System.out.print("""
+								  /^ ^\\
+								 / 0 0 \\
+								 V\\ Y /V
+								  / - \\
+								 /    |
+								V__) ||
+								""");
+
+					System.out.println("Edad: " + perro.getEdad());
+					System.out.println("Color: " + perro.getColor());
+					System.out.println("Raza: " + perro.getRaza());
+					System.out.println("Tamaño: " + perro.getTamanio());
+					System.out.println("Peso: " + perro.getPeso());
+					System.out.println("Precio: " + perro.getPrecio());
+					System.out.println("Sexo: " + perro.getSexo());
+					System.out.println("Alimentacion: " + perro.getAlimentacion());
+					System.out.println("Perfil: " + perro.getPerfil());
+				}
+				break;
+			} else {
+				System.out.println("Ingresa un numero valido");
+			}
+		}
 	}
 }
