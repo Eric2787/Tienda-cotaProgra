@@ -1,3 +1,4 @@
+import Vista.GUI.MenuPrincipal;
 import Vista.Menu;
 
 import java.io.IOException;
@@ -15,7 +16,6 @@ public class Main {
 	 * @throws ClassNotFoundException Si no se encuentra una clase al leer objetos serializados.
 	 */
 	public static void main (String[] args) throws IOException, ClassNotFoundException {
-		Menu menu = new Menu();
-		menu.mostrarMenu();
+		MenuPrincipal menuPrincipal = new MenuPrincipal();
 	}
 }
