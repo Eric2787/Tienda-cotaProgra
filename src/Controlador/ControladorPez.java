@@ -4,11 +4,13 @@ import Almacenamiento.BD;
 import Modelo.Pez;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador para la gestión de las operaciones relacionadas con los peces.
  */
-public class ControladorPez {
+public class ControladorPez implements SaludosInterfaz{
 
 	/**
 	 * Constructor por defecto.
@@ -132,5 +134,82 @@ public class ControladorPez {
 		ArrayList<Pez> auxPeces = BD.getVentaPez();
 
 		return auxPeces;
+	}
+
+    /**
+     * @param perfil
+     */
+	@Override
+	public void Saludar(int perfil) {}
+
+	@Override
+	public void Saludar() {
+		Scanner lectorString = new Scanner(System.in);
+		ControladorValidacion controladorValidacion = new ControladorValidacion();
+
+		//Lista para manipular los datos de la BD
+		List<Pez> listaPeces = BD.getStockPez();
+
+		//Verificar si la lista esta vacia, si no, devuelve los peces registrados
+		if (listaPeces.isEmpty()) {
+			System.out.println("No hay peces registrados");
+		}else{
+			System.out.println("Lista de peces registrados.");
+			for (int i = 0; i < listaPeces.size(); i++) {
+				System.out.println(i+1 + ". " + listaPeces.get(i).getNombre());
+			}
+
+			while(true){
+				System.out.println("Selecciona cual pececito saludar.");
+				String pso = lectorString.nextLine();
+
+				if (controladorValidacion.valEntero(pso)) {
+					int opcion = Integer.parseInt(pso);
+
+					if (opcion >= 1 && opcion <= listaPeces.size()) {
+						int numList = opcion - 1;
+
+						Pez pez = listaPeces.get(numList);
+
+						System.out.println(" ¡Hola!  Soy " + pez.getNombre());
+
+						System.out.print("""
+								      /`·.¸
+								     /¸...¸`:·
+								 ¸.·´  ¸   `·.¸.·´)
+								: © ):´;      ¸  {
+								 `·.¸ `·  ¸.·´\\`·¸)
+								     `\\\\´´\\¸.·´
+								""");
+						System.out.println("Nombre: " + pez.getNombre());
+						System.out.println("Edad: " + pez.getEdad());
+						System.out.println("Color: " + pez.getColor());
+						System.out.println("Raza: " + pez.getRaza());
+						System.out.println("Tamaño: " + pez.getTamanio());
+						System.out.println("Peso: " + pez.getPeso());
+						System.out.println("Precio: " + pez.getPrecio());
+
+						String tipoAguaPez= "";
+						if(pez.getTipoAgua()){
+							tipoAguaPez = "Salada";
+						}else{
+							tipoAguaPez = "Dulce";
+						}
+						System.out.println("Tipo de agua: " + tipoAguaPez);
+
+						String sexoMascota;
+						if(pez.getSexo()){
+							sexoMascota = "Macho";
+						}else{
+							sexoMascota = "Hembra";
+						}
+						System.out.println("Sexo: " + sexoMascota);
+						System.out.println("Alimentacion: " + pez.getAlimentacion());
+					} break;
+				}else {
+					System.out.println("Ingresa un numero valido");
+				}
+			}
+		}
 	}
 }
