@@ -39,18 +39,19 @@ public class RegistrarPerro implements ActionListener, WindowListener {
         f.addWindowListener(this);
 
         String arteAscii =
-                "   /(\n" +
-                        "  //\\\\\n" +
-                        " // )_.-\"\"\"-._,-\"\"-.\n" +
-                        " \\\\ ^,'_\\ /_\\ )\n" +
-                        "  `./ /O\\| |/O\\\\ /\n" +
-                        "    \\ \\_/| |\\_/ \\_/\n" +
-                        "     \\ .' _ `. /\n" +
-                        " .-. ( .:(_):. ) ,-.\n" +
-                        "( `._`._.-._,'_,' )\n" +
-                        " ) (\n" +
-                        "( .-------------. ) hjw\n" +
-                        " `-' `-'";
+                """
+                           /(
+                          //\\\\
+                         // )_.-""\"-._,-""-.
+                         \\\\ ^,'_\\ /_\\ )
+                          `./ /O\\| |/O\\\\ /
+                            \\ \\_/| |\\_/ \\_/
+                             \\ .' _ `. /
+                         .-. ( .:(_):. ) ,-.
+                        ( `._`._.-._,'_,' )
+                         ) (
+                        ( .-------------. ) hjw
+                         `-' `-'""";
 
         txtArte = new TextArea(arteAscii, 12, 50, TextArea.SCROLLBARS_NONE);
         txtArte.setEditable(false);
