@@ -4,11 +4,13 @@ import Almacenamiento.BD;
 import Modelo.Serpiente;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador para la gestión de las operaciones relacionadas con las serpientes.
  */
-public class ControladorSerpiente {
+public class ControladorSerpiente implements SaludosInterfaz{
 
 	/**
 	 * Registra una nueva serpiente en el stock.
@@ -110,4 +112,70 @@ public class ControladorSerpiente {
 		return auxSerpiente;
 	}
 
+	@Override
+	public void Saludar(int perfil){}
+
+	@Override
+	public void Saludar(){
+		Scanner lectorString = new Scanner(System.in);
+		ControladorValidacion controladorValidacion = new ControladorValidacion();
+
+		//Lista para manipular los datos de la BD
+		List<Serpiente> listaSerpierntes = BD.getStockSerp();
+
+		//Verificar si la lista esta vacia, si no, devuelve las arañas registradas
+		if (listaSerpierntes.isEmpty()) {
+			System.out.println("No hay serpientes registradas");
+		}else {
+			System.out.println("Lista de Serpientes registradas.");
+			for (int i = 0; i < listaSerpierntes.size(); i++) {
+				System.out.println(i + 1 + ". " + listaSerpierntes.get(i).getNombre());
+			}
+
+			while (true) {
+
+				System.out.println("Seleccione cual serpiente saludar.");
+				String pso = lectorString.nextLine();
+
+				if (controladorValidacion.valEntero(pso)) {
+					int opcion = Integer.parseInt(pso);
+
+					if (opcion >= 1 && opcion <= listaSerpierntes.size()) {
+						int numList = opcion - 1;
+
+						Serpiente serpiente = listaSerpierntes.get(numList);
+
+						System.out.println(" ¡Hola!  Soy " + serpiente.getNombre()) ;
+
+						System.out.print("""
+								(\\   .-.   /_")
+								 \\\\_//^\\\\_//
+								  `"`   `"`
+								""");
+						System.out.println("Nombre: " + serpiente.getNombre());
+						System.out.println("Edad: " + serpiente.getEdad());
+						System.out.println("Color: " + serpiente.getColor());
+						System.out.println("Raza: " + serpiente.getRaza());
+						System.out.println("Tamaño: " + serpiente.getTamanio());
+						System.out.println("Peso: " + serpiente.getPeso());
+						System.out.println("Precio: " + serpiente.getPrecio());
+						System.out.println("Toxicidad: " + serpiente.getPaisOrigen());
+
+						String sexoMascota;
+						if(serpiente.getSexo()){
+							sexoMascota = "Macho";
+						}else{
+							sexoMascota = "Hembra";
+						}
+						System.out.println("Sexo: " + sexoMascota);
+						System.out.println("Alimentacion: " + serpiente.getAlimentacion());
+					}break;
+				}else {
+					System.out.println("Ingresa un numero valido");
+				}
+			}
+
+
+		}
+	}
 }
