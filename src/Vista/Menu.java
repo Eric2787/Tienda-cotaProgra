@@ -760,21 +760,19 @@ public class Menu {
 					}
 					switch (opc) {
 						case 1:
-							for (Perro perro : BD.getStockPerros()){
-								controladorPerro.Saludar();
-								controladorPerro.Saludar(perro.getPerfil());
-							}
+							controladorPerro.Saludar();
 							break;
 						case 2:
+							controladorGato.Saludar();
 							break;
 						case 3:
+							controladorPez.Saludar();
 							break;
 						case 4:
-							for(Arania arania : BD.getStockAranias()){
-								controladorArania.Saludar();
-							}
+							controladorArania.Saludar();
 							break;
 						case 5:
+							controladorSerpiente.Saludar();
 							break;
 						case 6:
 							break;
@@ -783,7 +781,6 @@ public class Menu {
 							break;
 					}
 					break;
-
 				case 8:
 					System.out.println("Respaldando datos...");
 					controladorBD.respaldarBD();

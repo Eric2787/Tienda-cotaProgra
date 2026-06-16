@@ -120,21 +120,23 @@ public class ControladorPerro implements SaludosInterfaz {
 	}
 
 
-
+    /**
+     * @param perfil
+     */
 	@Override
 	public void Saludar(int perfil) {
 		switch (perfil){
 			case 1:
-				System.out.println("¡GUAU, GUAU! 🔊");
+				System.out.println("¡GUAU, GUAU!");
 				break;
 			case 2:
-				System.out.println("El perrito esta dormido 💤");
+				System.out.println("El perrito esta dormido");
 				break;
 			case 3:
-				System.out.println("El perrito esta olfateando 🔍");
+				System.out.println("El perrito esta olfateando");
 				break;
 			case 4:
-				System.out.println("El perro esta sentado esperando 🐶");
+				System.out.println("El perro esta sentado esperando");
 				break;
 		}
 	}
@@ -144,31 +146,34 @@ public class ControladorPerro implements SaludosInterfaz {
 		Scanner lectorString = new Scanner(System.in);
 		ControladorValidacion controladorValidacion = new ControladorValidacion();
 
-		int aux = 0;
-
-		System.out.println("Lista de perritos registrados.");
-
+		//Lista para manipular los datos de la BD
 		List<Perro> listaPerros = BD.getStockPerros();
 
-		for (int i = 0; i < listaPerros.size(); i++) {
-			System.out.println(i+1 + ". " + listaPerros.get(i).getNombre());
-		}
+		//Verificar si la lista esta vacia, si no, devuelve los perros registrados
+		if (listaPerros.isEmpty()) {
+			System.out.println("No hay arañas registradas");
+		}else{
+			System.out.println("Lista de perritos registrados.");
+			for (int i = 0; i < listaPerros.size(); i++) {
+				System.out.println(i+1 + ". " + listaPerros.get(i).getNombre());
+			}
 
-		while (true) {
-			System.out.println("Seleccione cual perrito saludar.");
-			String pso = lectorString.nextLine();
+			while (true) {
 
-			if (controladorValidacion.valEntero(pso)) {
-				int opcion = Integer.parseInt(pso);
+				System.out.println("Seleccione cual perrito saludar.");
+				String pso = lectorString.nextLine();
 
-				if(opcion >= 1 &&  opcion <= listaPerros.size()) {
-					int numList = opcion -1;
+				if (controladorValidacion.valEntero(pso)) {
+					int opcion = Integer.parseInt(pso);
 
-					Perro perro = listaPerros.get(numList);
+					if(opcion >= 1 &&  opcion <= listaPerros.size()) {
+						int numList = opcion -1;
 
-					System.out.println(" ¡GUAU, GUAU! soy " +  perro.getNombre());
+						Perro perro = listaPerros.get(numList);
 
-					System.out.print("""
+						System.out.println(" ¡GUAU, GUAU! soy " +  perro.getNombre());
+
+						System.out.print("""
 								  /^ ^\\
 								 / 0 0 \\
 								 V\\ Y /V
@@ -177,19 +182,36 @@ public class ControladorPerro implements SaludosInterfaz {
 								V__) ||
 								""");
 
-					System.out.println("Edad: " + perro.getEdad());
-					System.out.println("Color: " + perro.getColor());
-					System.out.println("Raza: " + perro.getRaza());
-					System.out.println("Tamaño: " + perro.getTamanio());
-					System.out.println("Peso: " + perro.getPeso());
-					System.out.println("Precio: " + perro.getPrecio());
-					System.out.println("Sexo: " + perro.getSexo());
-					System.out.println("Alimentacion: " + perro.getAlimentacion());
-					System.out.println("Perfil: " + perro.getPerfil());
+						System.out.println("Edad: " + perro.getEdad());
+						System.out.println("Color: " + perro.getColor());
+						System.out.println("Raza: " + perro.getRaza());
+						System.out.println("Tamaño: " + perro.getTamanio());
+						System.out.println("Peso: " + perro.getPeso());
+						System.out.println("Precio: " + perro.getPrecio());
+
+						String sexoMascota;
+						if(perro.getSexo()){
+							sexoMascota = "Macho";
+						}else{
+							sexoMascota = "Hembra";
+						}
+						System.out.println("Sexo: " + sexoMascota);
+						System.out.println("Alimentacion: " + perro.getAlimentacion());
+
+						String perfilPerro = "";
+						switch (perro.getPerfil()) {
+							case 1: perfilPerro = "Semental"; break;
+							case 2: perfilPerro = "Mascota"; break;
+							case 3: perfilPerro = "Policia"; break;
+							case 4: perfilPerro = "Apoyo a invidentes"; break;
+						}
+						System.out.println("Perfil: " + perfilPerro);
+						System.out.println("Funcion: ");
+						this.Saludar(perro.getPerfil());
+					} break;
+				} else {
+					System.out.println("Ingresa un numero valido");
 				}
-				break;
-			} else {
-				System.out.println("Ingresa un numero valido");
 			}
 		}
 	}

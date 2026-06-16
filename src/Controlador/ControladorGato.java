@@ -4,11 +4,13 @@ import Almacenamiento.BD;
 import Modelo.Gato;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador para la gestión de las operaciones relacionadas con los gatos.
  */
-public class ControladorGato {
+public class ControladorGato implements SaludosInterfaz {
 	/**
 	 * Constructor por defecto.
 	 */
@@ -114,5 +116,80 @@ public class ControladorGato {
 	public ArrayList<Gato> consultarVentasGatos(){
 		ArrayList<Gato> auxgatos = BD.getVentaGatos();
 		return auxgatos;
+	}
+
+	@Override
+	public void Saludar(int perfil) {
+	}
+
+	@Override
+	public void Saludar(){
+
+		Scanner lectorString = new Scanner(System.in);
+		ControladorValidacion controladorValidacion = new ControladorValidacion();
+
+		//Lista para manipular los datos de la BD
+		List<Gato> listaGatos = BD.getStockGatos();
+
+		//Verificar si la lista esta vacia, si no, devuelve los gatos registrados
+		if (listaGatos.isEmpty()) {
+			System.out.println("No hay gatitos registrados");
+		}else{
+			System.out.println("Lista de gatitos registrados.");
+			for (int i = 0; i < listaGatos.size(); i++) {
+				System.out.println(i+1 + ". " + listaGatos.get(i).getNombre());
+			}
+
+			while(true){
+				System.out.println("Selecciona cual gatito saludar.");
+				String pso = lectorString.nextLine();
+
+				if (controladorValidacion.valEntero(pso)) {
+					int opcion = Integer.parseInt(pso);
+
+					if (opcion >= 1 && opcion <= listaGatos.size()) {
+						int numList = opcion - 1;
+
+						Gato gatos = listaGatos.get(numList);
+
+						System.out.println(" ¡Hola!  Soy " + gatos.getNombre()) ;
+
+						System.out.print("""
+								 /\\_/\\
+								( o.o )
+								 > ^ <
+								""");
+						System.out.println("Nombre: " + gatos.getNombre());
+						System.out.println("Edad: " + gatos.getEdad());
+						System.out.println("Color: " + gatos.getColor());
+						System.out.println("Raza: " + gatos.getRaza());
+						System.out.println("Tamaño: " + gatos.getTamanio());
+						System.out.println("Peso: " + gatos.getPeso());
+						System.out.println("Precio: " + gatos.getPrecio());
+
+						String colorOjosGato = "";
+						switch(gatos.getColorOjos()){
+							case 1: colorOjosGato = "Azules"; break;
+							case 2: colorOjosGato = "Verdes"; break;
+							case 3: colorOjosGato = "Negros"; break;
+							case 4: colorOjosGato = "Cafe"; break;
+							case 5: colorOjosGato = "Grises"; break;
+						}
+						System.out.println("Color de ojos: " + colorOjosGato);
+
+						String sexoMascota;
+						if(gatos.getSexo()){
+							sexoMascota = "Macho";
+						}else{
+							sexoMascota = "Hembra";
+						}
+						System.out.println("Sexo: " + sexoMascota);
+						System.out.println("Alimentacion: " + gatos.getAlimentacion());
+					} break;
+				}else{
+					System.out.println("Ingresa un numero valido");
+				}
+			}
+		}
 	}
 }

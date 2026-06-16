@@ -4,6 +4,8 @@ import Almacenamiento.BD;
 import Modelo.Arania;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Controlador para la gestión de las operaciones relacionadas con las arañas.
@@ -125,12 +127,71 @@ public class ControladorArania implements  SaludosInterfaz {
 
 	@Override
 	public void Saludar() {
-		System.out.print("""
-				 /\\ \\  / /\\
-				//\\\\ .. //\\\\
-				//\\((  ))/\\\\
-				/  < '' >  \\
-				""");
-		System.out.println("Hola soy una araña");
+		Scanner lectorString = new Scanner(System.in);
+		ControladorValidacion controladorValidacion = new ControladorValidacion();
+
+		//Lista para manipular los datos de la BD
+		List<Arania> listaAranias = BD.getStockAranias();
+
+		//Verificar si la lista esta vacia, si no, devuelve las arañas registradas
+		if (listaAranias.isEmpty()) {
+			System.out.println("No hay arañas registradas");
+		}else{
+			System.out.println("Lista de arañas registradas.");
+			for (int i = 0; i < listaAranias.size(); i++) {
+				System.out.println(i+1 + ". " + listaAranias.get(i).getNombre());
+			}
+
+			while (true) {
+
+				System.out.println("Seleccione cual araña saludar.");
+				String pso = lectorString.nextLine();
+
+				if (controladorValidacion.valEntero(pso)) {
+					int opcion = Integer.parseInt(pso);
+
+					if (opcion >= 1 && opcion <= listaAranias.size()) {
+						int numList = opcion - 1;
+
+						Arania arania = listaAranias.get(numList);
+
+						System.out.println(" ¡Hola!  Soy " + arania.getNombre()) ;
+
+						System.out.print("""
+								 /\\ \\  / /\\
+								//\\\\ .. //\\\\
+								//\\((  ))/\\\\
+								/  < '' >  \\
+								""");
+						System.out.println("Nombre: " + arania.getNombre());
+						System.out.println("Edad: " + arania.getEdad());
+						System.out.println("Color: " + arania.getColor());
+						System.out.println("Raza: " + arania.getRaza());
+						System.out.println("Tamaño: " + arania.getTamanio());
+						System.out.println("Peso: " + arania.getPeso());
+						System.out.println("Precio: " + arania.getPrecio());
+
+						String toxicidadArania;
+						if(arania.getVenenosa()){
+							toxicidadArania = "Toxica";
+						}else{
+							toxicidadArania = "No toxica";
+						}
+						System.out.println("Toxicidad: " + toxicidadArania);
+
+						String sexoMascota;
+						if(arania.getSexo()){
+							sexoMascota = "Macho";
+						}else{
+							sexoMascota = "Hembra";
+						}
+						System.out.println("Sexo: " + sexoMascota);
+						System.out.println("Alimentacion: " + arania.getAlimentacion());
+					}break;
+				}else {
+					System.out.println("Ingresa un numero valido");
+				}
+			}
+		}
 	}
 }
