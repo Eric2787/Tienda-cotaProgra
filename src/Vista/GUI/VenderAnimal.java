@@ -4,8 +4,7 @@ import Almacenamiento.BD;
 import Controlador.ControladorValidacion;
 import Modelo.Perro;
 import Vista.GUI.RegistrosStock.*;
-import Vista.GUI.RegistrosVentas.VentaGato;
-import Vista.GUI.RegistrosVentas.VentaPerro;
+import Vista.GUI.RegistrosVentas.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -82,15 +81,15 @@ public class VenderAnimal extends WindowAdapter implements ActionListener {
         }
 
         if (e.getSource() == btnPez) {
-            new RegistrarPez();
+            new VentaPez();
         }
 
         if (e.getSource() == btnArania) {
-            new RegistrarArania();
+            new VentaArania();
         }
 
         if (e.getSource() == btnSerpiente) {
-            new RegistrarSerpiente();
+            new VentaSerpiente();
         }
     }
 }
