@@ -8,12 +8,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Clase RegistrarAnimal.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador RegistrarAnimal en el sistema.
+ */
 public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 
 	Frame f = new Frame("Registrar Animal");
 	Label label;
 	Button btnPerro, btnGato, btnPez, btnArania, btnSerpiente;
 
+	/**
+	 * Ejecuta la acción del método RegistrarAnimal.
+	 */
 	public  RegistrarAnimal() {
 
 		f.setLayout(null);
@@ -65,6 +72,10 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 		f.add(btnSerpiente);
 	}
 
+	/**
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e){
 		f.dispose();
 	}

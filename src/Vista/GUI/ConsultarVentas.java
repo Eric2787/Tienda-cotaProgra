@@ -8,11 +8,18 @@ import java.awt.event.WindowEvent;
 import Almacenamiento.BD;
 import Modelo.*;
 
+/**
+ * Clase ConsultarVentas.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador ConsultarVentas en el sistema.
+ */
 public class ConsultarVentas extends WindowAdapter implements ActionListener {
 
 	Frame f = new Frame("Consultar Ventas");
 	TextArea txtVentas;
 
+	/**
+	 * Ejecuta la acción del método ConsultarVentas.
+	 */
 	public ConsultarVentas() {
 		f.setLayout(new BorderLayout());
 		f.setSize(500, 450);
@@ -32,6 +39,9 @@ public class ConsultarVentas extends WindowAdapter implements ActionListener {
 		f.setVisible(true);
 	}
 
+	/**
+	 * Ejecuta la acción del método cargarDatosVentas.
+	 */
 	private void cargarDatosVentas() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("--- CONSULTA DE VENTAS ---\n\n");
@@ -73,6 +83,10 @@ public class ConsultarVentas extends WindowAdapter implements ActionListener {
 		txtVentas.setText(sb.toString());
 	}
 
+	/**
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e) {
 		f.dispose();
 	}
