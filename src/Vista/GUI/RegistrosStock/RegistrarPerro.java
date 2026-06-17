@@ -1,40 +1,41 @@
-package Vista.GUI.Registros;
+package Vista.GUI.RegistrosStock;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
 // CONTROLADORES
-import Controlador.ControladorSerpiente;
+import Controlador.ControladorPerro;
 import Controlador.ControladorValidacion;
 
 /**
- * Clase RegistrarSerpiente
- * Representa la interfaz gráfica (Vista) para registrar una nueva serpiente en el sistema +KOTA.
+ * Clase RegistrarPerro
+ * Representa la interfaz gráfica (Vista) para registrar un nuevo perro en el sistema +KOTA.
  */
-public class RegistrarSerpiente implements ActionListener, WindowListener {
+public class RegistrarPerro implements ActionListener, WindowListener {
 
     // --- DECLARACIÓN DE COMPONENTES DE LA VISTA ---
     Frame f;
     TextArea txtArte;
     TextField txtNombre, txtEdad, txtColor, txtRaza;
-    TextField txtTamanio, txtPeso, txtPrecio, txtPaisOrigen;
-    Choice choiceSexo, choiceAlimentacion;
+    TextField txtTamanio, txtPeso, txtPrecio;
+    Choice choiceSexo, choicePerfil, choiceAlimentacion;
     Button btnGuardar;
 
     // --- INSTANCIAS DE CONTROLADORES ---
-    ControladorSerpiente controlador;
-    ControladorValidacion validador; // <-- DECLARAMOS EL VALIDADOR
+    ControladorPerro controlador;
+    ControladorValidacion validador; // <-- 2. DECLARAMOS EL VALIDADOR
 
     /**
-     * Constructor de la clase RegistrarSerpiente.
+     * Constructor de la clase RegistrarPerro.
      */
-    public RegistrarSerpiente() {
-        controlador = new ControladorSerpiente();
-        validador = new ControladorValidacion(); // <-- INICIALIZAMOS EL VALIDADOR
+    public RegistrarPerro() {
+        // INICIALIZAR CONTROLADORES
+        controlador = new ControladorPerro();
+        validador = new ControladorValidacion();
 
         // Configuración básica de la ventana principal
-        f = new Frame("Registro +Kota - Nueva Serpiente");
+        f = new Frame("Registro +Kota - Nuevo Perro");
         f.setLayout(new BorderLayout());
         f.setSize(700, 650);
         f.setLocationRelativeTo(null);
@@ -43,14 +44,18 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
 
         String arteAscii =
                 """
-                
-
-                                       (\\   .-.   /_")
-                                        \\\\_//^\\\\_//
-                                         `"`   `"`
-                
-
-                """;
+                           /(
+                          //\\\\
+                         // )_.-""\"-._,-""-.
+                         \\\\ ^,'_\\ /_\\ )
+                          `./ /O\\| |/O\\\\ /
+                            \\ \\_/| |\\_/ \\_/
+                             \\ .' _ `. /
+                         .-. ( .:(_):. ) ,-.
+                        ( `._`._.-._,'_,' )
+                         ) (
+                        ( .-------------. ) hjw
+                         `-' `-'""";
 
         txtArte = new TextArea(arteAscii, 12, 50, TextArea.SCROLLBARS_NONE);
         txtArte.setEditable(false);
@@ -91,14 +96,19 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
-        // Precio y País de Origen
+        // Precio y Perfil
         panelFormulario.add(crearLabel("Precio ($):", fuenteEtiqueta));
         txtPrecio = crearTextField(fuenteTexto);
         panelFormulario.add(txtPrecio);
 
-        panelFormulario.add(crearLabel("País de Origen:", fuenteEtiqueta));
-        txtPaisOrigen = crearTextField(fuenteTexto);
-        panelFormulario.add(txtPaisOrigen);
+        panelFormulario.add(crearLabel("Perfil:", fuenteEtiqueta));
+        choicePerfil = new Choice();
+        choicePerfil.add("Semental");
+        choicePerfil.add("Mascota");
+        choicePerfil.add("Policia");
+        choicePerfil.add("Apoyo a invidentes");
+        choicePerfil.setFont(fuenteTexto);
+        panelFormulario.add(choicePerfil);
 
         // Sexo y Alimentación
         panelFormulario.add(crearLabel("Sexo:", fuenteEtiqueta));
@@ -119,7 +129,8 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
         Panel panelCentro = new Panel(new FlowLayout(FlowLayout.CENTER, 30, 40));
         panelCentro.add(panelFormulario);
 
-        btnGuardar = new Button("Registrar Serpiente");
+        // --- BOTÓN (Zona Inferior) ---
+        btnGuardar = new Button("Registrar Perro");
         btnGuardar.setFont(new Font("Arial", Font.BOLD, 20));
         btnGuardar.setBackground(Color.gray);
         btnGuardar.setForeground(Color.BLACK);
@@ -160,14 +171,13 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnGuardar) {
 
-            // VALIDACIÓN: Comprobar que no haya campos de texto vacíos
-            if (txtNombre.getText().trim().isEmpty() || txtRaza.getText().trim().isEmpty() ||
-                    txtColor.getText().trim().isEmpty() || txtPaisOrigen.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(f, "Por favor, llena los campos de Nombre, Color, Raza y País de Origen.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            // VALIDACION: Comprobar que no haya campos de texto vacíos (Textos)
+            if (txtNombre.getText().trim().isEmpty() || txtRaza.getText().trim().isEmpty() || txtColor.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(f, "Por favor, llena los campos de Nombre, Color y Raza.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // --- NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
+            // --- 3. NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
             if (!validador.valEntero(txtEdad.getText()) ||
                     !validador.valFloat(txtTamanio.getText()) ||
                     !validador.valFloat(txtPeso.getText()) ||
@@ -177,7 +187,6 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
                 return;
             }
 
-            // Si pasa las validaciones
             String nombre = txtNombre.getText();
             int edad = Integer.parseInt(txtEdad.getText());
             String color = txtColor.getText();
@@ -185,12 +194,13 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
             float tamanio = Float.parseFloat(txtTamanio.getText());
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
-            String paisOrigen = txtPaisOrigen.getText();
 
+            int perfil = choicePerfil.getSelectedIndex() + 1;
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
-            controlador.registrarSerpiente(nombre, edad, color, raza, tamanio, peso, precio, sexo, alimentacion, paisOrigen);
+            // Pasar los datos extraídos al controlador
+            controlador.registrarPerro(nombre, edad, color, raza, tamanio, peso, precio, perfil, sexo, alimentacion);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -200,12 +210,12 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
             txtTamanio.setText("");
             txtPeso.setText("");
             txtPrecio.setText("");
-            txtPaisOrigen.setText("");
+            choicePerfil.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
 
-            // MENSAJE DE ÉXITO VISUAL
-            JOptionPane.showMessageDialog(f, "¡La serpiente ha sido registrada correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            // MENSAJE DE ÉXITO
+            JOptionPane.showMessageDialog(f, "¡El perro ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

@@ -1,41 +1,40 @@
-package Vista.GUI.Registros;
+package Vista.GUI.RegistrosStock;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
-// CONTROLADORES
-import Controlador.ControladorPerro;
+import Controlador.ControladorGato;
 import Controlador.ControladorValidacion;
 
 /**
- * Clase RegistrarPerro
- * Representa la interfaz gráfica (Vista) para registrar un nuevo perro en el sistema +KOTA.
+ * Clase RegistrarGato
+ * Representa la interfaz gráfica (Vista) para registrar un nuevo gato en el sistema +KOTA.
  */
-public class RegistrarPerro implements ActionListener, WindowListener {
+public class RegistrarGato implements ActionListener, WindowListener {
 
     // --- DECLARACIÓN DE COMPONENTES DE LA VISTA ---
     Frame f;
     TextArea txtArte;
     TextField txtNombre, txtEdad, txtColor, txtRaza;
     TextField txtTamanio, txtPeso, txtPrecio;
-    Choice choiceSexo, choicePerfil, choiceAlimentacion;
+    Choice choiceSexo, choiceColorOjos, choiceAlimentacion;
     Button btnGuardar;
 
     // --- INSTANCIAS DE CONTROLADORES ---
-    ControladorPerro controlador;
-    ControladorValidacion validador; // <-- 2. DECLARAMOS EL VALIDADOR
+    ControladorGato controlador;
+    ControladorValidacion validador; // <-- DECLARAMOS EL VALIDADOR
 
     /**
-     * Constructor de la clase RegistrarPerro.
+     * Constructor de la clase RegistrarGato.
      */
-    public RegistrarPerro() {
+    public RegistrarGato() {
+
         // INICIALIZAR CONTROLADORES
-        controlador = new ControladorPerro();
+        controlador = new ControladorGato();
         validador = new ControladorValidacion();
 
-        // Configuración básica de la ventana principal
-        f = new Frame("Registro +Kota - Nuevo Perro");
+        f = new Frame("Registro +Kota - Nuevo Gato");
         f.setLayout(new BorderLayout());
         f.setSize(700, 650);
         f.setLocationRelativeTo(null);
@@ -44,18 +43,16 @@ public class RegistrarPerro implements ActionListener, WindowListener {
 
         String arteAscii =
                 """
-                           /(
-                          //\\\\
-                         // )_.-""\"-._,-""-.
-                         \\\\ ^,'_\\ /_\\ )
-                          `./ /O\\| |/O\\\\ /
-                            \\ \\_/| |\\_/ \\_/
-                             \\ .' _ `. /
-                         .-. ( .:(_):. ) ,-.
-                        ( `._`._.-._,'_,' )
-                         ) (
-                        ( .-------------. ) hjw
-                         `-' `-'""";
+                        ,_     _,
+                        |\\\\___//|
+                        |=6   6=|
+                        \\\\=._Y_.=//
+                         )  `  (    ,
+                        /       \\\\  ((
+                        |       |   ))
+                       /| |   | |\\\\_//
+                       \\\\| |._.| |/-`
+                        '"'   '"'""";
 
         txtArte = new TextArea(arteAscii, 12, 50, TextArea.SCROLLBARS_NONE);
         txtArte.setEditable(false);
@@ -96,19 +93,20 @@ public class RegistrarPerro implements ActionListener, WindowListener {
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
-        // Precio y Perfil
+        // Precio y Color de Ojos
         panelFormulario.add(crearLabel("Precio ($):", fuenteEtiqueta));
         txtPrecio = crearTextField(fuenteTexto);
         panelFormulario.add(txtPrecio);
 
-        panelFormulario.add(crearLabel("Perfil:", fuenteEtiqueta));
-        choicePerfil = new Choice();
-        choicePerfil.add("Semental");
-        choicePerfil.add("Mascota");
-        choicePerfil.add("Policia");
-        choicePerfil.add("Apoyo a invidentes");
-        choicePerfil.setFont(fuenteTexto);
-        panelFormulario.add(choicePerfil);
+        panelFormulario.add(crearLabel("Color de Ojos:", fuenteEtiqueta));
+        choiceColorOjos = new Choice();
+        choiceColorOjos.add("Azules");
+        choiceColorOjos.add("Verdes");
+        choiceColorOjos.add("Negros");
+        choiceColorOjos.add("Café");
+        choiceColorOjos.add("Grises");
+        choiceColorOjos.setFont(fuenteTexto);
+        panelFormulario.add(choiceColorOjos);
 
         // Sexo y Alimentación
         panelFormulario.add(crearLabel("Sexo:", fuenteEtiqueta));
@@ -130,7 +128,7 @@ public class RegistrarPerro implements ActionListener, WindowListener {
         panelCentro.add(panelFormulario);
 
         // --- BOTÓN (Zona Inferior) ---
-        btnGuardar = new Button("Registrar Perro");
+        btnGuardar = new Button("Registrar Gato");
         btnGuardar.setFont(new Font("Arial", Font.BOLD, 20));
         btnGuardar.setBackground(Color.gray);
         btnGuardar.setForeground(Color.BLACK);
@@ -171,13 +169,13 @@ public class RegistrarPerro implements ActionListener, WindowListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnGuardar) {
 
-            // VALIDACION: Comprobar que no haya campos de texto vacíos (Textos)
+            // VALIDACIÓN: Comprobar que no haya campos de texto vacíos
             if (txtNombre.getText().trim().isEmpty() || txtRaza.getText().trim().isEmpty() || txtColor.getText().trim().isEmpty()) {
                 JOptionPane.showMessageDialog(f, "Por favor, llena los campos de Nombre, Color y Raza.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
-            // --- 3. NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
+            // --- NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
             if (!validador.valEntero(txtEdad.getText()) ||
                     !validador.valFloat(txtTamanio.getText()) ||
                     !validador.valFloat(txtPeso.getText()) ||
@@ -188,19 +186,18 @@ public class RegistrarPerro implements ActionListener, WindowListener {
             }
 
             String nombre = txtNombre.getText();
+            String raza = txtRaza.getText();
             int edad = Integer.parseInt(txtEdad.getText());
             String color = txtColor.getText();
-            String raza = txtRaza.getText();
             float tamanio = Float.parseFloat(txtTamanio.getText());
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
-            int perfil = choicePerfil.getSelectedIndex() + 1;
+            int colorOjos = choiceColorOjos.getSelectedIndex() + 1;
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
-            // Pasar los datos extraídos al controlador
-            controlador.registrarPerro(nombre, edad, color, raza, tamanio, peso, precio, perfil, sexo, alimentacion);
+            controlador.registrarGato(nombre, raza, edad, color, tamanio, peso, precio, sexo, alimentacion, colorOjos);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -210,12 +207,11 @@ public class RegistrarPerro implements ActionListener, WindowListener {
             txtTamanio.setText("");
             txtPeso.setText("");
             txtPrecio.setText("");
-            choicePerfil.select(0);
+            choiceColorOjos.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
 
-            // MENSAJE DE ÉXITO
-            JOptionPane.showMessageDialog(f, "¡El perro ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(f, "¡El gato ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

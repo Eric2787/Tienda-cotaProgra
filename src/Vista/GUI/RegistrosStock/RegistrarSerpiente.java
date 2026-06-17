@@ -1,40 +1,40 @@
-package Vista.GUI.Registros;
+package Vista.GUI.RegistrosStock;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
-import Controlador.ControladorGato;
+// CONTROLADORES
+import Controlador.ControladorSerpiente;
 import Controlador.ControladorValidacion;
 
 /**
- * Clase RegistrarGato
- * Representa la interfaz gráfica (Vista) para registrar un nuevo gato en el sistema +KOTA.
+ * Clase RegistrarSerpiente
+ * Representa la interfaz gráfica (Vista) para registrar una nueva serpiente en el sistema +KOTA.
  */
-public class RegistrarGato implements ActionListener, WindowListener {
+public class RegistrarSerpiente implements ActionListener, WindowListener {
 
     // --- DECLARACIÓN DE COMPONENTES DE LA VISTA ---
     Frame f;
     TextArea txtArte;
     TextField txtNombre, txtEdad, txtColor, txtRaza;
-    TextField txtTamanio, txtPeso, txtPrecio;
-    Choice choiceSexo, choiceColorOjos, choiceAlimentacion;
+    TextField txtTamanio, txtPeso, txtPrecio, txtPaisOrigen;
+    Choice choiceSexo, choiceAlimentacion;
     Button btnGuardar;
 
     // --- INSTANCIAS DE CONTROLADORES ---
-    ControladorGato controlador;
+    ControladorSerpiente controlador;
     ControladorValidacion validador; // <-- DECLARAMOS EL VALIDADOR
 
     /**
-     * Constructor de la clase RegistrarGato.
+     * Constructor de la clase RegistrarSerpiente.
      */
-    public RegistrarGato() {
+    public RegistrarSerpiente() {
+        controlador = new ControladorSerpiente();
+        validador = new ControladorValidacion(); // <-- INICIALIZAMOS EL VALIDADOR
 
-        // INICIALIZAR CONTROLADORES
-        controlador = new ControladorGato();
-        validador = new ControladorValidacion();
-
-        f = new Frame("Registro +Kota - Nuevo Gato");
+        // Configuración básica de la ventana principal
+        f = new Frame("Registro +Kota - Nueva Serpiente");
         f.setLayout(new BorderLayout());
         f.setSize(700, 650);
         f.setLocationRelativeTo(null);
@@ -43,16 +43,14 @@ public class RegistrarGato implements ActionListener, WindowListener {
 
         String arteAscii =
                 """
-                        ,_     _,
-                        |\\\\___//|
-                        |=6   6=|
-                        \\\\=._Y_.=//
-                         )  `  (    ,
-                        /       \\\\  ((
-                        |       |   ))
-                       /| |   | |\\\\_//
-                       \\\\| |._.| |/-`
-                        '"'   '"'""";
+                
+
+                                       (\\   .-.   /_")
+                                        \\\\_//^\\\\_//
+                                         `"`   `"`
+                
+
+                """;
 
         txtArte = new TextArea(arteAscii, 12, 50, TextArea.SCROLLBARS_NONE);
         txtArte.setEditable(false);
@@ -93,20 +91,14 @@ public class RegistrarGato implements ActionListener, WindowListener {
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
-        // Precio y Color de Ojos
+        // Precio y País de Origen
         panelFormulario.add(crearLabel("Precio ($):", fuenteEtiqueta));
         txtPrecio = crearTextField(fuenteTexto);
         panelFormulario.add(txtPrecio);
 
-        panelFormulario.add(crearLabel("Color de Ojos:", fuenteEtiqueta));
-        choiceColorOjos = new Choice();
-        choiceColorOjos.add("Azules");
-        choiceColorOjos.add("Verdes");
-        choiceColorOjos.add("Negros");
-        choiceColorOjos.add("Café");
-        choiceColorOjos.add("Grises");
-        choiceColorOjos.setFont(fuenteTexto);
-        panelFormulario.add(choiceColorOjos);
+        panelFormulario.add(crearLabel("País de Origen:", fuenteEtiqueta));
+        txtPaisOrigen = crearTextField(fuenteTexto);
+        panelFormulario.add(txtPaisOrigen);
 
         // Sexo y Alimentación
         panelFormulario.add(crearLabel("Sexo:", fuenteEtiqueta));
@@ -127,8 +119,7 @@ public class RegistrarGato implements ActionListener, WindowListener {
         Panel panelCentro = new Panel(new FlowLayout(FlowLayout.CENTER, 30, 40));
         panelCentro.add(panelFormulario);
 
-        // --- BOTÓN (Zona Inferior) ---
-        btnGuardar = new Button("Registrar Gato");
+        btnGuardar = new Button("Registrar Serpiente");
         btnGuardar.setFont(new Font("Arial", Font.BOLD, 20));
         btnGuardar.setBackground(Color.gray);
         btnGuardar.setForeground(Color.BLACK);
@@ -170,8 +161,9 @@ public class RegistrarGato implements ActionListener, WindowListener {
         if (e.getSource() == btnGuardar) {
 
             // VALIDACIÓN: Comprobar que no haya campos de texto vacíos
-            if (txtNombre.getText().trim().isEmpty() || txtRaza.getText().trim().isEmpty() || txtColor.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(f, "Por favor, llena los campos de Nombre, Color y Raza.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+            if (txtNombre.getText().trim().isEmpty() || txtRaza.getText().trim().isEmpty() ||
+                    txtColor.getText().trim().isEmpty() || txtPaisOrigen.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(f, "Por favor, llena los campos de Nombre, Color, Raza y País de Origen.", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
@@ -185,19 +177,20 @@ public class RegistrarGato implements ActionListener, WindowListener {
                 return;
             }
 
+            // Si pasa las validaciones
             String nombre = txtNombre.getText();
-            String raza = txtRaza.getText();
             int edad = Integer.parseInt(txtEdad.getText());
             String color = txtColor.getText();
+            String raza = txtRaza.getText();
             float tamanio = Float.parseFloat(txtTamanio.getText());
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
+            String paisOrigen = txtPaisOrigen.getText();
 
-            int colorOjos = choiceColorOjos.getSelectedIndex() + 1;
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
-            controlador.registrarGato(nombre, raza, edad, color, tamanio, peso, precio, sexo, alimentacion, colorOjos);
+            controlador.registrarSerpiente(nombre, edad, color, raza, tamanio, peso, precio, sexo, alimentacion, paisOrigen);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -207,11 +200,12 @@ public class RegistrarGato implements ActionListener, WindowListener {
             txtTamanio.setText("");
             txtPeso.setText("");
             txtPrecio.setText("");
-            choiceColorOjos.select(0);
+            txtPaisOrigen.setText("");
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
 
-            JOptionPane.showMessageDialog(f, "¡El gato ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            // MENSAJE DE ÉXITO VISUAL
+            JOptionPane.showMessageDialog(f, "¡La serpiente ha sido registrada correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
