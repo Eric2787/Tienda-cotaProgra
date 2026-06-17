@@ -33,6 +33,9 @@ public class ControladorBD{
 	String nomVenSerpiente = "BDVenSerpiente.obj";
 	File archVenSerpiente = new File(nomVenSerpiente);
 
+	/**
+	 * Ejecuta la acción del método ControladorBD.
+	 */
 	public ControladorBD(){
 
 	}
@@ -50,6 +53,11 @@ public class ControladorBD{
 		this.guardarStockSerpientes();
 	}
 
+	/**
+	 * Ejecuta la acción del método cargarBD.
+	 * @throws IOException Excepción IOException.
+	 * @throws ClassNotFoundException Excepción ClassNotFoundException.
+	 */
 	public void cargarBD() throws IOException, ClassNotFoundException {
 		this.leerPerros();
 		this.leerGatos();
@@ -59,6 +67,10 @@ public class ControladorBD{
 
 	}
 
+	/**
+	 * Ejecuta la acción del método respaldarVentas.
+	 * @throws IOException Excepción IOException.
+	 */
 	public void respaldarVentas() throws IOException{
 		this.guardarVenPerros();
 		this.guardarVenGatos();
@@ -67,6 +79,11 @@ public class ControladorBD{
 		this.guardarVenSerpientes();
 	}
 
+	/**
+	 * Ejecuta la acción del método cargarVentas.
+	 * @throws IOException Excepción IOException.
+	 * @throws ClassNotFoundException Excepción ClassNotFoundException.
+	 */
 	public void cargarVentas() throws IOException, ClassNotFoundException {
 		this.leerVenPerros();
 		this.leerVenGatos();
@@ -101,6 +118,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Ejecuta la acción del método guardarStockGatos.
+	 * @throws IOException Excepción IOException.
+	 */
 	public void guardarStockGatos() throws IOException{
 		ArrayList<Gato> auxGatos = BD.getStockGatos();
 		FileOutputStream flujoS = new FileOutputStream(archGato);
@@ -147,6 +168,10 @@ public class ControladorBD{
 		}
 	}
 
+	/**
+	 * Ejecuta la acción del método guardarStockArania.
+	 * @throws IOException Excepción IOException.
+	 */
 	public void guardarStockArania() throws IOException {
 		ArrayList<Arania> auxAranias = BD.getStockAranias();
 		FileOutputStream flujoS = new FileOutputStream(archArania);
