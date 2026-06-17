@@ -1,4 +1,4 @@
-package Vista.GUI.Registros;
+package Vista.GUI.RegistrosStock;
 
 public class RegistrarArania {
 

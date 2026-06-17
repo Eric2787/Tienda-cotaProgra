@@ -1,6 +1,6 @@
 package Vista.GUI;
 
-import Vista.GUI.Registros.*;
+import Vista.GUI.RegistrosStock.*;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -63,13 +63,11 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 		f.add(btnPez);
 		f.add(btnArania);
 		f.add(btnSerpiente);
-
 	}
 
 	public void windowClosing(WindowEvent e){
 		f.dispose();
 	}
-
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

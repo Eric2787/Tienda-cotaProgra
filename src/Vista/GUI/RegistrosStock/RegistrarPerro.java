@@ -1,4 +1,4 @@
-package Vista.GUI.Registros;
+package Vista.GUI.RegistrosStock;
 
 import java.awt.*;
 import java.awt.event.*;

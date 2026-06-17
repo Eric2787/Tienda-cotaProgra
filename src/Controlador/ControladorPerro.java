@@ -3,6 +3,8 @@ package Controlador;
 import Almacenamiento.BD;
 import Modelo.Perro;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,6 +17,7 @@ public class ControladorPerro implements SaludosInterfaz {
 	 * Constructor por defecto.
 	 */
 	public ControladorPerro() {
+
 
 	}
 	/**
@@ -83,11 +86,31 @@ public class ControladorPerro implements SaludosInterfaz {
 	}
 
 	/**
+	 * Busca un perro dentro del inventario disponible por su nombre.
+	 * @param nombre Nombre del perro ingresado en la interfaz gráfica.
+	 * @return El objeto Perro si existe, o null si no se encuentra.
+	 */
+	public Perro buscarPerro(String nombre) {
+		ArrayList<Perro> stockActual = BD.getStockPerros();
+		if (stockActual != null) {
+			for (Perro p : stockActual) {
+				// Comparacion nombre (no importa en minusculas o mayusculas)
+				if (p.getNombre().equalsIgnoreCase(nombre)) {
+					return p; //Se retorna el objeto
+				}
+			}
+		}
+		return null; // Si termina el bucle y no lo halla, regresa nulo
+	}
+
+	/**
 	 * Realiza el proceso de venta de un perro, aplicando descuentos si corresponde.
 	 *
 	 * @param perro Perro a vender.
 	 */
 	public void venderPerro(Perro perro){
+		Component f = null;
+
 		ArrayList<Perro> auxPerros = BD.getStockPerros();
 		if (perro.getPrecio() > 5000){
 			Float dto = (float) (perro.getPrecio() * 0.90);
@@ -96,16 +119,14 @@ public class ControladorPerro implements SaludosInterfaz {
 					auxPerros.get(i).setPrecio(dto);
 					this.registrarVentaPerro(perro);
 					this.eliminarPerro(perro);
-					System.out.println("Precio final: " + perro.getPrecio());
-					System.out.println("Descuento: 10%");
+					JOptionPane.showMessageDialog(f, "¡Felicidades el perrito ha sido vendido! \nPrecio final: $"+ perro.getPrecio() + "\nDescuento: 10%", "Venta Exitosa", JOptionPane.INFORMATION_MESSAGE);
 					break;
 				}
 			}
 		}else {
 			this.registrarVentaPerro(perro);
 			this.eliminarPerro(perro);
-			System.out.println("Precio final: " + perro.getPrecio());
-			System.out.println("Felicidades, se ha vendido con exito");
+			JOptionPane.showMessageDialog(f, "¡Felicidades el perrito ha sido vendido! \nPrecio final: $"+ perro.getPrecio(), "Venta Exitosa", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
@@ -151,7 +172,7 @@ public class ControladorPerro implements SaludosInterfaz {
 
 		//Verificar si la lista esta vacia, si no, devuelve los perros registrados
 		if (listaPerros.isEmpty()) {
-			System.out.println("No hay arañas registradas");
+			System.out.println("No hay perros registrados");
 		}else{
 			System.out.println("Lista de perritos registrados.");
 			for (int i = 0; i < listaPerros.size(); i++) {
