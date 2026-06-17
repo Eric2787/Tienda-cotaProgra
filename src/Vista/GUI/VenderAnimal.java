@@ -1,8 +1,5 @@
 package Vista.GUI;
 
-import Almacenamiento.BD;
-import Controlador.ControladorValidacion;
-import Modelo.Perro;
 import Vista.GUI.RegistrosStock.*;
 import Vista.GUI.RegistrosVentas.*;
 
@@ -49,7 +46,7 @@ public class VenderAnimal extends WindowAdapter implements ActionListener {
         btnPez.setFont(new Font("Arial", Font.BOLD, 20));
         btnPez.addActionListener(this);
 
-        btnArania = new Button("Arania");
+        btnArania = new Button("Araña");
         btnArania.setBounds(50, 300, 200, 30);
         btnArania.setFont(new Font("Arial", Font.BOLD, 20));
         btnArania.addActionListener(this);
