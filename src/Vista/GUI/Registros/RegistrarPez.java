@@ -1,57 +1,58 @@
-package Vista.GUI.RegistrosStock;
+package Vista.GUI.Registros;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
 // CONTROLADORES
-import Controlador.ControladorArania;
+import Controlador.ControladorPez;
 import Controlador.ControladorValidacion;
 
 /**
- * Clase RegistrarArania
- * Representa la interfaz gráfica (Vista) para registrar una nueva araña en el sistema +KOTA.
+ * Clase RegistrarPez
+ * Representa la interfaz gráfica (Vista) para registrar un nuevo pez en el sistema +KOTA.
  */
-public class RegistrarArania implements ActionListener, WindowListener {
+public class RegistrarPez implements ActionListener, WindowListener {
 
     // --- DECLARACIÓN DE COMPONENTES DE LA VISTA ---
     Frame f;
     TextArea txtArte;
     TextField txtNombre, txtEdad, txtColor, txtRaza;
     TextField txtTamanio, txtPeso, txtPrecio;
-    Choice choiceSexo, choiceVenenosa, choiceAlimentacion;
+    Choice choiceSexo, choiceTipoAgua, choiceAlimentacion;
     Button btnGuardar;
 
     // --- INSTANCIAS DE CONTROLADORES ---
-    ControladorArania controlador;
+    ControladorPez controlador;
     ControladorValidacion validador; // <-- DECLARAMOS EL VALIDADOR
 
     /**
-     * Constructor de la clase RegistrarArania.
+     * Constructor de la clase RegistrarPez.
      */
-    public RegistrarArania() {
-        controlador = new ControladorArania();
-        validador = new ControladorValidacion(); // <-- INICIALIZAMOS EL VALIDADOR
+    public RegistrarPez() {
+        controlador = new ControladorPez();
+        validador = new ControladorValidacion();
 
         // Configuración básica de la ventana principal
-        f = new Frame("Registro +Kota - Nueva Araña");
+        f = new Frame("Registro +Kota - Nuevo Pez");
         f.setLayout(new BorderLayout());
         f.setSize(700, 650);
         f.setLocationRelativeTo(null);
         f.setResizable(false);
         f.addWindowListener(this);
 
+
         String arteAscii =
                 """
                 
-
-                       /\\ \\  / /\\
-                      //\\\\ .. //\\\\
-                      //\\((  ))//\\\\
-                      /  < '' >  \\
+                               /`·.¸
+                              /¸...¸`:·
+                          ¸.·´  ¸   `·.¸.·´)
+                         : © ):´;      ¸  {
+                          `·.¸ `·  ¸.·´\\`·¸)
+                              `\\\\´´\\¸.·´
                 
-
-                """;
+                                BUG?""";
 
         txtArte = new TextArea(arteAscii, 12, 50, TextArea.SCROLLBARS_NONE);
         txtArte.setEditable(false);
@@ -92,17 +93,17 @@ public class RegistrarArania implements ActionListener, WindowListener {
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
-        // Precio y Toxicidad (Venenosa)
+        // Precio y Tipo de Agua
         panelFormulario.add(crearLabel("Precio ($):", fuenteEtiqueta));
         txtPrecio = crearTextField(fuenteTexto);
         panelFormulario.add(txtPrecio);
 
-        panelFormulario.add(crearLabel("¿Es Venenosa?:", fuenteEtiqueta));
-        choiceVenenosa = new Choice();
-        choiceVenenosa.add("Sí (Tóxica)");    // Índice 0 (true)
-        choiceVenenosa.add("No (No tóxica)"); // Índice 1 (false)
-        choiceVenenosa.setFont(fuenteTexto);
-        panelFormulario.add(choiceVenenosa);
+        panelFormulario.add(crearLabel("Tipo de Agua:", fuenteEtiqueta));
+        choiceTipoAgua = new Choice();
+        choiceTipoAgua.add("Salada (True)"); // Índice 0
+        choiceTipoAgua.add("Dulce (False)"); // Índice 1
+        choiceTipoAgua.setFont(fuenteTexto);
+        panelFormulario.add(choiceTipoAgua);
 
         // Sexo y Alimentación
         panelFormulario.add(crearLabel("Sexo:", fuenteEtiqueta));
@@ -114,10 +115,9 @@ public class RegistrarArania implements ActionListener, WindowListener {
 
         panelFormulario.add(crearLabel("Alimentación:", fuenteEtiqueta));
         choiceAlimentacion = new Choice();
-        choiceAlimentacion.add("Carnívoro");
-        choiceAlimentacion.add("Herbívoro");
-        choiceAlimentacion.add("Omnívoro");
-        choiceAlimentacion.add("Insectívoro");
+        choiceAlimentacion.add("Carnivoro");
+        choiceAlimentacion.add("Hervivoro");
+        choiceAlimentacion.add("Omnivoro");
         choiceAlimentacion.setFont(fuenteTexto);
         panelFormulario.add(choiceAlimentacion);
 
@@ -125,7 +125,7 @@ public class RegistrarArania implements ActionListener, WindowListener {
         panelCentro.add(panelFormulario);
 
         // --- BOTÓN (Zona Inferior) ---
-        btnGuardar = new Button("Registrar Araña");
+        btnGuardar = new Button("Registrar Pez");
         btnGuardar.setFont(new Font("Arial", Font.BOLD, 20));
         btnGuardar.setBackground(Color.gray);
         btnGuardar.setForeground(Color.BLACK);
@@ -180,11 +180,11 @@ public class RegistrarArania implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
-            boolean venenosa = (choiceVenenosa.getSelectedIndex() == 0);
+            boolean tipoAgua = (choiceTipoAgua.getSelectedIndex() == 0);
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
-            controlador.registrarArania(nombre, edad, color, raza, tamanio, peso, precio, venenosa, sexo, alimentacion);
+            controlador.registrarPez(nombre, edad, color, raza, tamanio, peso, precio, tipoAgua, sexo, alimentacion);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -194,12 +194,12 @@ public class RegistrarArania implements ActionListener, WindowListener {
             txtTamanio.setText("");
             txtPeso.setText("");
             txtPrecio.setText("");
-            choiceVenenosa.select(0);
+            choiceTipoAgua.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
 
             // MENSAJE DE ÉXITO VISUAL
-            JOptionPane.showMessageDialog(f, "¡La araña ha sido registrada correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(f, "¡El pez ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
