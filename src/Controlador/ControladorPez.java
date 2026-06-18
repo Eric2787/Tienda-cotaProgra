@@ -3,6 +3,7 @@ package Controlador;
 import Almacenamiento.BD;
 import Modelo.Pez;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -34,6 +35,11 @@ public class ControladorPez implements SaludosInterfaz{
 	 * @param tipoAlimentacion Tipo de alimentación del pez.
 	 */
 	public void registrarPez(String nombre, int edad, String color, String raza, float tamanio, float peso, float precio, boolean tipoAgua, boolean sexo, String tipoAlimentacion) {
+		// Validación: no se admiten peces con un peso mayor o igual a 50 gramos.
+		if (peso >= 50) {
+			JOptionPane.showMessageDialog(null, "No se pueden registrar peces con un peso mayor o igual a 50 gramos.", "Error de Registro", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
 		Pez pececito = new Pez();
 

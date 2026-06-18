@@ -22,7 +22,7 @@ public class ConsultarVentas extends WindowAdapter implements ActionListener {
 	 */
 	public ConsultarVentas() {
 		f.setLayout(new BorderLayout());
-		f.setSize(500, 450);
+		f.setSize(600, 600);
 		f.setLocationRelativeTo(null);
 		f.setResizable(false);
 		f.addWindowListener(this);

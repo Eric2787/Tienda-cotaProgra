@@ -3,6 +3,7 @@ package Controlador;
 import Almacenamiento.BD;
 import Modelo.Gato;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -33,6 +34,12 @@ public class ControladorGato implements SaludosInterfaz {
 	 * @param colorOjos Código de color de ojos del gato.
 	 */
 	public void registrarGato(String nombre, String raza, int edad, String color, float tamanio, float peso, float precio, boolean sexo, String alimentacion, int colorOjos) {
+		// Validación: no deben aceptarse gatos menores a 12 cm.
+		if (tamanio < 12) {
+			JOptionPane.showMessageDialog(null, "No se pueden registrar gatos con un tamaño menor a 12 cm.", "Error de Registro", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
 		Gato gato = new Gato();
 		gato.setNombre(nombre);
 		gato.setRaza(raza);

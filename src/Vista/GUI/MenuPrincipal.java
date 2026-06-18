@@ -19,7 +19,7 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 
 	Frame frame;
 	Label label;
-	Button btnRegistrarAnimal, btnVerStock, btnVenderAnimal, btnConsultarVentas, btnRespaldarBD, btnCargarBD, btnSaludar;
+	Button btnRegistrarAnimal, btnVerStock, btnVenderAnimal, btnConsultarVentas, btnRespaldarBD, btnCargarBD, btnSaludar, btnBuscarPrecio;
 
 	/**
 	 * Ejecuta la acción del método MenuPrincipal.
@@ -78,6 +78,11 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		btnSaludar.setBounds(50, 600, 200, 30);
 		btnSaludar.addActionListener(this);
 
+		btnBuscarPrecio = new Button("Buscar Precio");
+		btnBuscarPrecio.setBounds(50, 650, 200, 30);
+		btnBuscarPrecio.addActionListener(this);
+
+
 
 		frame.add(label);
 		frame.add(btnRegistrarAnimal);
@@ -88,12 +93,14 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		frame.add(btnRespaldarBD);
 		frame.add(btnCargarBD);
 		frame.add(btnSaludar);
+		frame.add(btnBuscarPrecio);
 
 
 		frame.addWindowListener(this);
 		frame.setLayout(null);
 		frame.setSize(800, 800);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 	}
 
 	/**
@@ -144,6 +151,11 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		if (e.getSource() == btnSaludar) {
 			new Saludar();
 		}
+
+		if (e.getSource() == btnBuscarPrecio) {
+			new MostrarPrecio();
+		}
+
 
 	}
 }

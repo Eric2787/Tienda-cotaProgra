@@ -71,7 +71,7 @@ public class RegistrarPez implements ActionListener, WindowListener {
         txtNombre = crearTextField(fuenteTexto);
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(crearLabel("Edad (meses):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Edad (años):", fuenteEtiqueta));
         txtEdad = crearTextField(fuenteTexto);
         panelFormulario.add(txtEdad);
 
@@ -89,7 +89,7 @@ public class RegistrarPez implements ActionListener, WindowListener {
         txtTamanio = crearTextField(fuenteTexto);
         panelFormulario.add(txtTamanio);
 
-        panelFormulario.add(crearLabel("Peso (kg):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Peso (gramos):", fuenteEtiqueta));
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
@@ -191,11 +191,20 @@ public class RegistrarPez implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
+            // --- VALIDACIÓN DE REGULACIÓN: Peso del pez ---
+            if (peso >= 50) {
+                JOptionPane.showMessageDialog(f, "No se pueden registrar peces con un peso mayor o igual a 50 gramos.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             boolean tipoAgua = (choiceTipoAgua.getSelectedIndex() == 0);
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
             controlador.registrarPez(nombre, edad, color, raza, tamanio, peso, precio, tipoAgua, sexo, alimentacion);
+
+            // MENSAJE DE ÉXITO
+            JOptionPane.showMessageDialog(f, "¡El pez ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -208,9 +217,6 @@ public class RegistrarPez implements ActionListener, WindowListener {
             choiceTipoAgua.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
-
-            // MENSAJE DE ÉXITO VISUAL
-            JOptionPane.showMessageDialog(f, "¡El pez ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

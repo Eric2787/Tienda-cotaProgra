@@ -74,7 +74,7 @@ public class RegistrarPerro implements ActionListener, WindowListener {
         txtNombre = crearTextField(fuenteTexto);
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(crearLabel("Edad (meses):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Edad (años):", fuenteEtiqueta));
         txtEdad = crearTextField(fuenteTexto);
         panelFormulario.add(txtEdad);
 
@@ -92,7 +92,7 @@ public class RegistrarPerro implements ActionListener, WindowListener {
         txtTamanio = crearTextField(fuenteTexto);
         panelFormulario.add(txtTamanio);
 
-        panelFormulario.add(crearLabel("Peso (kg):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Peso (Gramos):", fuenteEtiqueta));
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
@@ -177,7 +177,7 @@ public class RegistrarPerro implements ActionListener, WindowListener {
                 return;
             }
 
-            // --- 3. NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
+            // --- VALIDACIÓN DE FORMATO NUMÉRICO ---
             if (!validador.valEntero(txtEdad.getText()) ||
                     !validador.valFloat(txtTamanio.getText()) ||
                     !validador.valFloat(txtPeso.getText()) ||
@@ -195,12 +195,21 @@ public class RegistrarPerro implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
+            // --- VALIDACIÓN DE REGULACIÓN: Edad del perro ---
+            if (edad > 5) { // La edad está en años, la restricción es 5 años.
+                JOptionPane.showMessageDialog(f, "No se pueden registrar perros con una edad mayor a 5 años.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             int perfil = choicePerfil.getSelectedIndex() + 1;
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
             // Pasar los datos extraídos al controlador
             controlador.registrarPerro(nombre, edad, color, raza, tamanio, peso, precio, perfil, sexo, alimentacion);
+
+            // MENSAJE DE ÉXITO
+            JOptionPane.showMessageDialog(f, "¡El perro ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -213,9 +222,6 @@ public class RegistrarPerro implements ActionListener, WindowListener {
             choicePerfil.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
-
-            // MENSAJE DE ÉXITO
-            JOptionPane.showMessageDialog(f, "¡El perro ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

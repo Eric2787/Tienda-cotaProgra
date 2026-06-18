@@ -70,7 +70,7 @@ public class RegistrarArania implements ActionListener, WindowListener {
         txtNombre = crearTextField(fuenteTexto);
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(crearLabel("Edad (meses):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Edad (años):", fuenteEtiqueta));
         txtEdad = crearTextField(fuenteTexto);
         panelFormulario.add(txtEdad);
 
@@ -88,7 +88,7 @@ public class RegistrarArania implements ActionListener, WindowListener {
         txtTamanio = crearTextField(fuenteTexto);
         panelFormulario.add(txtTamanio);
 
-        panelFormulario.add(crearLabel("Peso (kg):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Peso (Gramos):", fuenteEtiqueta));
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
@@ -191,11 +191,24 @@ public class RegistrarArania implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
+            // --- VALIDACIÓN DE REGULACIÓN: Peso y Tamaño de la araña ---
+            if (peso > 500) {
+                JOptionPane.showMessageDialog(f, "No se pueden registrar arañas con un peso mayor a 500 gramos.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            if (tamanio > 12) {
+                JOptionPane.showMessageDialog(f, "No se pueden registrar arañas con un tamaño mayor a 12 cm.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             boolean venenosa = (choiceVenenosa.getSelectedIndex() == 0);
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
             controlador.registrarArania(nombre, edad, color, raza, tamanio, peso, precio, venenosa, sexo, alimentacion);
+
+            // MENSAJE DE ÉXITO VISUAL
+            JOptionPane.showMessageDialog(f, "¡La araña ha sido registrada correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -208,9 +221,6 @@ public class RegistrarArania implements ActionListener, WindowListener {
             choiceVenenosa.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
-
-            // MENSAJE DE ÉXITO VISUAL
-            JOptionPane.showMessageDialog(f, "¡La araña ha sido registrada correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

@@ -34,6 +34,12 @@ public class ControladorPerro implements SaludosInterfaz {
 	* @param alimentacion Es la alimentacion definida por el usuario
 	*/
 	public void registrarPerro(String nombre, int edad, String color, String raza, float tamanio, float peso, float precio, int perfil, boolean sexo, String alimentacion){
+		// Validación: no deben aceptarse perros con una edad mayor a los 5 años (60 meses)
+		if (edad > 60) {
+			JOptionPane.showMessageDialog(null, "No se pueden registrar perros con una edad mayor a 5 años (60 meses).", "Error de Registro", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
 		Perro perro = new Perro();
 		perro.setNombre(nombre);
 		perro.setEdad(edad);

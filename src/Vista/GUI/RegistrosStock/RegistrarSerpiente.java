@@ -69,7 +69,7 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
         txtNombre = crearTextField(fuenteTexto);
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(crearLabel("Edad (meses):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Edad (años):", fuenteEtiqueta));
         txtEdad = crearTextField(fuenteTexto);
         panelFormulario.add(txtEdad);
 
@@ -87,7 +87,7 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
         txtTamanio = crearTextField(fuenteTexto);
         panelFormulario.add(txtTamanio);
 
-        panelFormulario.add(crearLabel("Peso (kg):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Peso (Gramos):", fuenteEtiqueta));
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
@@ -186,6 +186,12 @@ public class RegistrarSerpiente implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
             String paisOrigen = txtPaisOrigen.getText();
+
+            // --- VALIDACIÓN DE REGULACIÓN: Tamaño de la serpiente ---
+            if (tamanio > 130) {
+                JOptionPane.showMessageDialog(f, "No se pueden registrar serpientes con un tamaño mayor a 130 cm.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();

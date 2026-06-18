@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JOptionPane;
 
+// CONTROLADORES
 import Controlador.ControladorGato;
 import Controlador.ControladorValidacion;
 
@@ -71,7 +72,7 @@ public class RegistrarGato implements ActionListener, WindowListener {
         txtNombre = crearTextField(fuenteTexto);
         panelFormulario.add(txtNombre);
 
-        panelFormulario.add(crearLabel("Edad (meses):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Edad (años):", fuenteEtiqueta));
         txtEdad = crearTextField(fuenteTexto);
         panelFormulario.add(txtEdad);
 
@@ -89,7 +90,7 @@ public class RegistrarGato implements ActionListener, WindowListener {
         txtTamanio = crearTextField(fuenteTexto);
         panelFormulario.add(txtTamanio);
 
-        panelFormulario.add(crearLabel("Peso (kg):", fuenteEtiqueta));
+        panelFormulario.add(crearLabel("Peso (Gramos):", fuenteEtiqueta));
         txtPeso = crearTextField(fuenteTexto);
         panelFormulario.add(txtPeso);
 
@@ -175,7 +176,7 @@ public class RegistrarGato implements ActionListener, WindowListener {
                 return;
             }
 
-            // --- NUEVA VALIDACIÓN USANDO TU CONTROLADOR ---
+            // --- VALIDACIÓN DE FORMATO NUMÉRICO ---
             if (!validador.valEntero(txtEdad.getText()) ||
                     !validador.valFloat(txtTamanio.getText()) ||
                     !validador.valFloat(txtPeso.getText()) ||
@@ -193,11 +194,20 @@ public class RegistrarGato implements ActionListener, WindowListener {
             float peso = Float.parseFloat(txtPeso.getText());
             float precio = Float.parseFloat(txtPrecio.getText());
 
+            // --- VALIDACIÓN DE REGULACIÓN: Tamaño del gato ---
+            if (tamanio < 12) {
+                JOptionPane.showMessageDialog(f, "No se pueden registrar gatos con un tamaño menor a 12 cm.", "Error de Regulación", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
             int colorOjos = choiceColorOjos.getSelectedIndex() + 1;
             boolean sexo = (choiceSexo.getSelectedIndex() == 0);
             String alimentacion = choiceAlimentacion.getSelectedItem();
 
             controlador.registrarGato(nombre, raza, edad, color, tamanio, peso, precio, sexo, alimentacion, colorOjos);
+
+            // MENSAJE DE ÉXITO
+            JOptionPane.showMessageDialog(f, "¡El gato ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
 
             // Restaurar la interfaz vaciando los campos
             txtNombre.setText("");
@@ -210,8 +220,6 @@ public class RegistrarGato implements ActionListener, WindowListener {
             choiceColorOjos.select(0);
             choiceSexo.select(0);
             choiceAlimentacion.select(0);
-
-            JOptionPane.showMessageDialog(f, "¡El gato ha sido registrado correctamente en el sistema!", "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

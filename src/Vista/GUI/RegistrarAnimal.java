@@ -9,8 +9,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 /**
- * Clase RegistrarAnimal.
- * Contiene la lógica y atributos correspondientes a la entidad o controlador RegistrarAnimal en el sistema.
+ * Clase Saludar.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador Saludar en el sistema.
  */
 public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 
@@ -19,7 +19,7 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 	Button btnPerro, btnGato, btnPez, btnArania, btnSerpiente;
 
 	/**
-	 * Ejecuta la acción del método RegistrarAnimal.
+	 * Ejecuta la acción del método Saludar.
 	 */
 	public  RegistrarAnimal() {
 
@@ -53,7 +53,7 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 		btnPez.setFont(new Font("Arial", Font.BOLD, 20));
 		btnPez.addActionListener(this);
 
-		btnArania = new Button("Arania");
+		btnArania = new Button("Araña");
 		btnArania.setBounds(50, 300, 200, 30);
 		btnArania.setFont(new Font("Arial", Font.BOLD, 20));
 		btnArania.addActionListener(this);
