@@ -8,12 +8,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Clase RegistrarAnimal.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador RegistrarAnimal en el sistema.
+ */
 public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 
 	Frame f = new Frame("Registrar Animal");
 	Label label;
 	Button btnPerro, btnGato, btnPez, btnArania, btnSerpiente;
 
+	/**
+	 * Ejecuta la acción del método RegistrarAnimal.
+	 * @return Un valor de tipo public.
+	 */
 	public  RegistrarAnimal() {
 
 		f.setLayout(null);
@@ -66,6 +74,10 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 
 	}
 
+	/**
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e){
 		f.dispose();
 	}
@@ -77,18 +89,34 @@ public class RegistrarAnimal extends WindowAdapter implements ActionListener {
 			new RegistrarPerro();
 		}
 		if (e.getSource() == btnGato) {
+	/**
+	 * Ejecuta la acción del método RegistrarGato.
+	 * @return Un valor de tipo new.
+	 */
 			new RegistrarGato();
 		}
 
 		if (e.getSource() == btnPez) {
+	/**
+	 * Ejecuta la acción del método RegistrarPez.
+	 * @return Un valor de tipo new.
+	 */
 			new RegistrarPez();
 		}
 
 		if (e.getSource() == btnArania) {
+	/**
+	 * Ejecuta la acción del método RegistrarArania.
+	 * @return Un valor de tipo new.
+	 */
 			new RegistrarArania();
 		}
 
 		if (e.getSource() == btnSerpiente) {
+	/**
+	 * Ejecuta la acción del método RegistrarSerpiente.
+	 * @return Un valor de tipo new.
+	 */
 			new RegistrarSerpiente();
 		}
 	}

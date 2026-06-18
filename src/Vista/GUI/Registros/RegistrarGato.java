@@ -141,12 +141,23 @@ public class RegistrarGato implements ActionListener, WindowListener {
         f.setVisible(true);
     }
 
+	/**
+	 * Ejecuta la acción del método crearLabel.
+	 * @param texto Parámetro texto.
+	 * @param fuente Parámetro fuente.
+	 * @return Un valor de tipo Label.
+	 */
     private Label crearLabel(String texto, Font fuente) {
         Label lbl = new Label(texto);
         lbl.setFont(fuente);
         return lbl;
     }
 
+	/**
+	 * Ejecuta la acción del método crearTextField.
+	 * @param fuente Parámetro fuente.
+	 * @return Un valor de tipo TextField.
+	 */
     private TextField crearTextField(Font fuente) {
         TextField txt = new TextField(12);
         txt.setFont(fuente);

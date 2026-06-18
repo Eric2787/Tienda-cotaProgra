@@ -9,6 +9,10 @@ import java.io.IOException;
 
 import Controlador.ControladorBD;
 
+/**
+ * Clase MenuPrincipal.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador MenuPrincipal en el sistema.
+ */
 public class MenuPrincipal extends WindowAdapter implements ActionListener {
 
 	ControladorBD controladorBD = new ControladorBD();
@@ -17,6 +21,10 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 	Label label;
 	Button btnRegistrarAnimal, btnVerStock, btnVenderAnimal, btnConsultarVentas, btnRespaldarBD, btnCargarBD, btnSaludar;
 
+	/**
+	 * Ejecuta la acción del método MenuPrincipal.
+	 * @return Un valor de tipo public.
+	 */
 	public MenuPrincipal() {
 		frame = new Frame("Menu Principal");
 
@@ -89,6 +97,10 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		frame.setVisible(true);
 	}
 
+	/**
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e){
 		frame.dispose();
 	}
@@ -100,14 +112,26 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		}
 
 		if (e.getSource() == btnVerStock) {
+	/**
+	 * Ejecuta la acción del método VerStock.
+	 * @return Un valor de tipo new.
+	 */
 			new VerStock();
 		}
 
 		if (e.getSource() == btnVenderAnimal) {
+	/**
+	 * Ejecuta la acción del método VenderAnimal.
+	 * @return Un valor de tipo new.
+	 */
 			new VenderAnimal();
 		}
 
 		if (e.getSource() == btnConsultarVentas) {
+	/**
+	 * Ejecuta la acción del método ConsultarVentas.
+	 * @return Un valor de tipo new.
+	 */
 			new ConsultarVentas();
 		}
 
@@ -131,6 +155,10 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 		}
 
 		if (e.getSource() == btnSaludar) {
+	/**
+	 * Ejecuta la acción del método Saludar.
+	 * @return Un valor de tipo new.
+	 */
 			new Saludar();
 		}
 

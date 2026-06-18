@@ -8,12 +8,20 @@ import java.awt.event.WindowEvent;
 import Almacenamiento.BD;
 import Modelo.*;
 
+/**
+ * Clase VerStock.
+ * Contiene la lógica y atributos correspondientes a la entidad o controlador VerStock en el sistema.
+ */
 public class VerStock extends WindowAdapter implements ActionListener {
 
 	Frame f = new Frame("Ver Stock");
 	TextArea txtStock;
 
 
+	/**
+	 * Ejecuta la acción del método VerStock.
+	 * @return Un valor de tipo public.
+	 */
 	public VerStock() {
 		f.setLayout(new BorderLayout());
 		f.setSize(500, 450);
@@ -33,6 +41,9 @@ public class VerStock extends WindowAdapter implements ActionListener {
 		f.setVisible(true);
 	}
 
+	/**
+	 * Ejecuta la acción del método cargarDatosStock.
+	 */
 	private void cargarDatosStock() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("--- CONSULTA DE STOCK ---\n\n");
@@ -74,6 +85,10 @@ public class VerStock extends WindowAdapter implements ActionListener {
 		txtStock.setText(sb.toString());
 	}
 
+	/**
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e) {
 		f.dispose();
 	}
