@@ -791,6 +791,10 @@ public class Menu {
 		}while (aux != 0) ;
 	}
 
+	/**
+	 * Ejecuta la acción del método alimentacion.
+	 * @param opc Parámetro opc.
+	 */
 	private void alimentacion(int opc) {
 		switch (opc) {
 			case 1:
