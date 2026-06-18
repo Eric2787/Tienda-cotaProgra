@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase SaludarPez.
+ *
+ * Representa la clase SaludarPez del sistema.
+ */
 public class SaludarPez extends WindowAdapter implements ActionListener {
 
     private Frame frame;
@@ -66,6 +71,11 @@ public class SaludarPez extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         ArrayList<Pez> peces = controlador.consultarPez();
@@ -82,6 +92,13 @@ public class SaludarPez extends WindowAdapter implements ActionListener {
         stockArea.setText(stockTexto.toString());
     }
 
+    /**
+     * Método getTipoAguaString.
+     *
+     * Ejecuta la acción del método getTipoAguaString.
+     * @param tipoAgua Parámetro tipoAgua.
+     * @return Retorna un valor de tipo String.
+     */
     private String getTipoAguaString(boolean tipoAgua) {
         return tipoAgua ? "Salada" : "Dulce";
     }
@@ -140,6 +157,12 @@ public class SaludarPez extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

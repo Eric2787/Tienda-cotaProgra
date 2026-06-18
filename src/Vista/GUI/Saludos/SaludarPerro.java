@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase SaludarPerro.
+ *
+ * Representa la clase SaludarPerro del sistema.
+ */
 public class SaludarPerro extends WindowAdapter implements ActionListener {
 
     private Frame frame;
@@ -37,6 +42,11 @@ public class SaludarPerro extends WindowAdapter implements ActionListener {
         stockArea = new TextArea();
         stockArea.setEditable(false);
         stockArea.setFont(new Font("Monospaced", Font.PLAIN, 16));
+       /**
+        * Método actualizarStockArea.
+        *
+        * Ejecuta la acción del método actualizarStockArea.
+        */
         actualizarStockArea();
         panelStock.add(stockArea, BorderLayout.CENTER);
 
@@ -67,6 +77,11 @@ public class SaludarPerro extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         ArrayList<Perro> perros = controlador.consultarPerros();
@@ -83,6 +98,13 @@ public class SaludarPerro extends WindowAdapter implements ActionListener {
         stockArea.setText(stockTexto.toString());
     }
 
+    /**
+     * Método getPerfilString.
+     *
+     * Ejecuta la acción del método getPerfilString.
+     * @param perfil Parámetro perfil.
+     * @return Retorna un valor de tipo String.
+     */
     private String getPerfilString(int perfil) {
         return switch (perfil) {
             case 1 -> "Semental";
@@ -156,6 +178,12 @@ public class SaludarPerro extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

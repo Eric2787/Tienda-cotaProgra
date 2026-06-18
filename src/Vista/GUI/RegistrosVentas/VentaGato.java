@@ -7,6 +7,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Clase VentaGato.
+ *
+ * Representa la clase VentaGato del sistema.
+ */
 public class VentaGato extends WindowAdapter implements ActionListener{
 
     //Componentes de la vista
@@ -66,16 +71,37 @@ public class VentaGato extends WindowAdapter implements ActionListener{
         f.setVisible(true);
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         f.dispose();
     }
 
+    /**
+     * Método crearLabel.
+     *
+     * Ejecuta la acción del método crearLabel.
+     * @param texto Parámetro texto.
+     * @param fuente Parámetro fuente.
+     * @return Retorna un valor de tipo Label.
+     */
     private Label crearLabel(String texto, Font fuente) {
         Label lbl = new Label(texto);
         lbl.setFont(fuente);
         return lbl;
     }
 
+    /**
+     * Método crearTextField.
+     *
+     * Ejecuta la acción del método crearTextField.
+     * @param fuente Parámetro fuente.
+     * @return Retorna un valor de tipo TextField.
+     */
     private TextField crearTextField(Font fuente) {
         TextField txt = new TextField(12);
         txt.setFont(fuente);

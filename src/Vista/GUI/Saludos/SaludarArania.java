@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase SaludarArania.
+ *
+ * Representa la clase SaludarArania del sistema.
+ */
 public class SaludarArania extends WindowAdapter implements ActionListener {
 
     private Frame frame;
@@ -66,6 +71,11 @@ public class SaludarArania extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         ArrayList<Arania> aranias = controlador.consultarArania();
@@ -134,6 +144,12 @@ public class SaludarArania extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

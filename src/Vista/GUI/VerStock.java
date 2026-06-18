@@ -34,6 +34,11 @@ public class VerStock extends WindowAdapter implements ActionListener {
 		txtStock.setBackground(Color.WHITE);
 		txtStock.setForeground(Color.BLACK);
 		
+	/**
+	 * Método cargarDatosStock.
+	 *
+	 * Ejecuta la acción del método cargarDatosStock.
+	 */
 		cargarDatosStock();
 
 		f.add(txtStock, BorderLayout.CENTER);

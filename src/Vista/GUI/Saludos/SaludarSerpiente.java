@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase SaludarSerpiente.
+ *
+ * Representa la clase SaludarSerpiente del sistema.
+ */
 public class SaludarSerpiente extends WindowAdapter implements ActionListener {
 
     private Frame frame;
@@ -64,6 +69,11 @@ public class SaludarSerpiente extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         ArrayList<Serpiente> serpientes = controlador.consultarSerpiente();
@@ -131,6 +141,12 @@ public class SaludarSerpiente extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

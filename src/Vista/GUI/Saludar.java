@@ -68,6 +68,12 @@ public class Saludar extends WindowAdapter implements ActionListener {
 		f.add(btnSerpiente);
 	}
 
+	/**
+	 * Método windowClosing.
+	 *
+	 * Ejecuta la acción del método windowClosing.
+	 * @param e Parámetro e.
+	 */
 	public void windowClosing(WindowEvent e) {
 		f.dispose();
 	}
