@@ -10,12 +10,22 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 
+/**
+ * Clase VenderAnimal.
+ *
+ * Representa la clase VenderAnimal del sistema.
+ */
 public class VenderAnimal extends WindowAdapter implements ActionListener {
 
     Frame f = new Frame("Vender un Animal");
     Label label;
     Button btnPerro, btnGato, btnPez, btnArania, btnSerpiente;
 
+    /**
+     * Método VenderAnimal.
+     *
+     * Ejecuta la acción del método VenderAnimal.
+     */
     public VenderAnimal() {
         f.setLayout(null);
         f.setSize(600,600);
@@ -64,6 +74,12 @@ public class VenderAnimal extends WindowAdapter implements ActionListener {
         f.add(btnSerpiente);
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e){
         f.dispose();
     }

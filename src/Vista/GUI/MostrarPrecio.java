@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase MostrarPrecio.
+ *
+ * Representa la clase MostrarPrecio del sistema.
+ */
 public class MostrarPrecio extends WindowAdapter implements ActionListener {
 
     Frame frame;
@@ -26,6 +31,11 @@ public class MostrarPrecio extends WindowAdapter implements ActionListener {
     private ControladorArania controladorArania;
     private ControladorSerpiente controladorSerpiente;
 
+    /**
+     * Método MostrarPrecio.
+     *
+     * Ejecuta la acción del método MostrarPrecio.
+     */
     public MostrarPrecio() {
         controladorPerro = new ControladorPerro();
         controladorGato = new ControladorGato();
@@ -73,6 +83,11 @@ public class MostrarPrecio extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         stockTexto.append("--- Perros ---\n");
@@ -142,6 +157,13 @@ public class MostrarPrecio extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método buscarPrecioAnimal.
+     *
+     * Ejecuta la acción del método buscarPrecioAnimal.
+     * @param nombre Parámetro nombre.
+     * @return Retorna un valor de tipo String.
+     */
     private String buscarPrecioAnimal(String nombre) {
         // Buscar en perros
         for (Perro perro : controladorPerro.consultarPerros()) {
@@ -177,6 +199,12 @@ public class MostrarPrecio extends WindowAdapter implements ActionListener {
         return "No se encontró ningún animal con el nombre: '" + nombre + "'.";
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

@@ -33,6 +33,11 @@ public class ConsultarVentas extends WindowAdapter implements ActionListener {
 		txtVentas.setBackground(Color.WHITE);
 		txtVentas.setForeground(Color.BLACK);
 
+	/**
+	 * Método cargarDatosVentas.
+	 *
+	 * Ejecuta la acción del método cargarDatosVentas.
+	 */
 		cargarDatosVentas();
 
 		f.add(txtVentas, BorderLayout.CENTER);

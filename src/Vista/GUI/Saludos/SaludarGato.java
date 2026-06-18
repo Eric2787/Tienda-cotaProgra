@@ -11,6 +11,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 
+/**
+ * Clase SaludarGato.
+ *
+ * Representa la clase SaludarGato del sistema.
+ */
 public class SaludarGato extends WindowAdapter implements ActionListener {
 
     private Frame frame;
@@ -66,6 +71,11 @@ public class SaludarGato extends WindowAdapter implements ActionListener {
         frame.setVisible(true);
     }
 
+    /**
+     * Método actualizarStockArea.
+     *
+     * Ejecuta la acción del método actualizarStockArea.
+     */
     private void actualizarStockArea() {
         StringBuilder stockTexto = new StringBuilder();
         ArrayList<Gato> gatos = controlador.consultarGatos();
@@ -82,6 +92,13 @@ public class SaludarGato extends WindowAdapter implements ActionListener {
         stockArea.setText(stockTexto.toString());
     }
 
+    /**
+     * Método getColorOjosString.
+     *
+     * Ejecuta la acción del método getColorOjosString.
+     * @param colorOjos Parámetro colorOjos.
+     * @return Retorna un valor de tipo String.
+     */
     private String getColorOjosString(int colorOjos) {
         return switch (colorOjos) {
             case 1 -> "Azules";
@@ -144,6 +161,12 @@ public class SaludarGato extends WindowAdapter implements ActionListener {
         }
     }
 
+    /**
+     * Método windowClosing.
+     *
+     * Ejecuta la acción del método windowClosing.
+     * @param e Parámetro e.
+     */
     public void windowClosing(WindowEvent e) {
         frame.dispose();
     }

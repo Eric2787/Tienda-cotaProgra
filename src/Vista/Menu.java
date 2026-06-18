@@ -118,6 +118,11 @@ public class Menu {
 							System.out.println("2. Es herbiboro");
 							System.out.println("3. Es omnivoro");
 							opc = lectorInt.nextInt();
+						/**
+						 * Método alimentacion.
+						 *
+						 * Ejecuta la acción del método alimentacion.
+						 */
 							alimentacion(opc);
 
 							controladorPerro.registrarPerro(nombre, edad, color, raza, tamanio, peso, precio, perfil, sexo, alimentacion);
@@ -199,6 +204,11 @@ public class Menu {
 							System.out.println("2. Es herbiboro");
 							System.out.println("3. Es omnivoro");
 							opc2 = lectorInt.nextInt();
+						/**
+						 * Método alimentacion.
+						 *
+						 * Ejecuta la acción del método alimentacion.
+						 */
 							alimentacion(opc2);
 
 							controladorGato.registrarGato(nombre, raza, edad, color, tamanio, peso, precio, sexo, alimentacion, colorOjos);
@@ -282,6 +292,11 @@ public class Menu {
 							System.out.println("2. Es hervivoro");
 							System.out.println("3. Es omnivoro");
 							opc3 = lectorInt.nextInt();
+						/**
+						 * Método alimentacion.
+						 *
+						 * Ejecuta la acción del método alimentacion.
+						 */
 							alimentacion(opc3);
 
 							controladorPez.registrarPez(nombre, edad, color, raza, tamanio, peso, precio, tipoAgua, sexo, alimentacion);
@@ -359,6 +374,11 @@ public class Menu {
 							System.out.println("2. Es hervivoro");
 							System.out.println("3. Es omnivoro");
 							opc3 = lectorInt.nextInt();
+						/**
+						 * Método alimentacion.
+						 *
+						 * Ejecuta la acción del método alimentacion.
+						 */
 							alimentacion(opc3);
 
 							controladorArania.registrarArania(nombre, edad, color, raza, tamanio, peso, precio, toxicidad, sexo, alimentacion);
@@ -427,6 +447,11 @@ public class Menu {
 							System.out.println("2. Es hervivoro");
 							System.out.println("3. Es omnivoro");
 							opc3 = lectorInt.nextInt();
+						/**
+						 * Método alimentacion.
+						 *
+						 * Ejecuta la acción del método alimentacion.
+						 */
 							alimentacion(opc3);
 							System.out.println("Ingrese el pais de origen de la serpiente");
 							paisOrigen = lectorString.nextLine();
