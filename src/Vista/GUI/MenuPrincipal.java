@@ -24,7 +24,8 @@ public class MenuPrincipal extends WindowAdapter implements ActionListener {
 	/**
 	 * Ejecuta la acción del método MenuPrincipal.
 	 */
-	public MenuPrincipal() {
+	public MenuPrincipal() throws IOException {
+		controladorBD.respaldarBD();
 		frame = new Frame("Menu Principal");
 
 
